@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -26,6 +26,27 @@ class User extends Authenticatable
 
     // Relationships
     public function profile(){
-        return $this->hasOne('App\User');
+        return $this->hasOne('App\Profile');
+    }
+
+    // fas is short of featured in and achievements
+    public function fas(){
+        return $this->hasMany('App\Fa');
+    }
+
+    public function works(){
+        return $this->hasMany('App\Work');
+    }
+
+    public function skills(){
+      return $this->belongsToMany('App\Skill')->withPivot('rec_count');
+    }
+
+    public function experiences(){
+      return $this->hasMany('App\Experience');
+    }
+
+    public function groups(){
+      return $this->belongsToMany('App\Group');
     }
 }

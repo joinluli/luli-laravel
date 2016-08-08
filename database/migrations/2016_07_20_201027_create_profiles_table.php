@@ -22,8 +22,8 @@ class CreateProfilesTable extends Migration
             $table->string('about');
             $table->string('tagline_1', 30);
             $table->string('tagline_2', 30);
-            $table->string('location', 50);
-            $table->integer('user_id')->unsigned();
+            $table->integer('location_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }
