@@ -39,7 +39,7 @@ class AuthController extends Controller
     		$message = NULL;
     	}
 
-    	return response()->json(['id' => $message, 'api_token' => $api_token])	;
+    	return response()->json(['id' => $message, 'api_token' => $api_token]);
     }
 
 
@@ -62,6 +62,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
     	$data['email'] = $request['email'];
+        $data['username'] = $request['username'];
     	$data['password'] = $request['password'];
     	$data['password_confirmation'] = $request['password_confirmation'];
         $data['api_token'] = str_random(60);
@@ -69,6 +70,7 @@ class AuthController extends Controller
         // Validate the inputs
         $validator = Validator::make($data, [
             'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|unique:users',
             'password' => 'required|min:6|confirmed',
             'api_token' => 'unique:users',
         ]);
@@ -82,6 +84,7 @@ class AuthController extends Controller
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
         $user->api_token = $data['api_token'];
+        $user->username = $data['username'];
         if ($user->save()) {
             return response()->json(['id' => $user->id, 'api_token' => $user->api_token]);
         }

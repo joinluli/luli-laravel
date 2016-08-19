@@ -29,33 +29,33 @@ Route::group(['namespace' => "api", 'prefix' => 'api'], function(){
 
   // Login protected route groups
 	Route::group(['middleware' => "auth:api"], function(){
-		Route::get('/profile/:id', 'ProfilesController@myprofile');
-    Route::get('test', 'ExperiencesController@test');
-    Route::get('/exp_types','ExperiencesController@exp_types');
+    	Route::get('/profile/:id', 'ProfilesController@myprofile');
+        Route::get('test', 'ExperiencesController@test');
+        Route::get('/exp_types','ExperiencesController@exp_types');
 
-    //
-    Route::get('/recommend_skill/{skill_id}/{user_id}', 'SkillsController@recommend_skill');
-    Route::get('/derecommend_skill/{skill_id}/{user_id}', 'SkillsController@derecommend_skill');
+        //
+        Route::get('/recommend_skill/{skill_id}/{user_id}', 'SkillsController@recommend_skill');
+        Route::get('/derecommend_skill/{skill_id}/{user_id}', 'SkillsController@derecommend_skill');
 
-    // join and unjoin groups
-    Route::get('/join_group/{group_id}', 'GroupsController@join_group');
-    Route::get('/unjoin_group/{group_id}', 'GroupsController@unjoin_group');
+        // join and unjoin groups
+        Route::get('/join_group/{group_id}', 'GroupsController@join_group');
+        Route::get('/unjoin_group/{group_id}', 'GroupsController@unjoin_group');
 
-    // get experiences, freelance, or training entries
-    Route::get('/get_experience', 'ExperiencesController@get_experience');
-    Route::get('/get_freelance', 'ExperiencesController@get_freelance');
-    Route::get('/get_training', 'ExperiencesController@get_training');
+        // get experiences, freelance, or training entries
+        Route::get('/get_experience', 'ExperiencesController@get_experience');
+        Route::get('/get_freelance', 'ExperiencesController@get_freelance');
+        Route::get('/get_training', 'ExperiencesController@get_training');
 
-    // Restful routes
-    Route::resource('/works', 'WorksController');
-    Route::resource('/profiles', 'ProfilesController');
-    Route::resource('/fas', 'FasController');
-    Route::resource('/experiences','ExperiencesController');
-    Route::resource('/skills','SkillsController');
-    Route::resource('/groups','GroupsController');
+        // Restful routes
+        Route::resource('/works', 'WorksController');
+        Route::resource('/profiles', 'ProfilesController');
+        Route::resource('/fas', 'FasController');
+        Route::resource('/experiences','ExperiencesController');
+        Route::resource('/skills','SkillsController');
+        Route::resource('/groups','GroupsController');
 
 	}); // end of logged in requirement group
 }); // end of API namespaced routes
 
 // Route for the users unique url. For example: joinluli.com/user_name. Leave this in the end because it can intefere with other routes.
-Route::get("/{username}", 'api\ProfilesController@show');
+Route::get("/{username}", 'ProfilesController@public_profile');

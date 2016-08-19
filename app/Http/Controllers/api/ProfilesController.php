@@ -49,7 +49,8 @@ class ProfilesController extends Controller
     public function show($id)
     {
         //
-        $profile = Profile::findOrFail($id);
+        $user = User::find($id);
+        $profile = $user->profile;
         return response()->json($profile);
     }
 
