@@ -15,13 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// // Route model bindings
+Route::model('user', 'App\User');
+// Route::model('profile', 'Profile');
 // Authentication routes - login and registration
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
 // All routes for the API are namespaced in the following group. They will all be of the format /api/<route_name>
-Route::group(['namespace' => "api", 'prefix' => 'api'], function(){
+Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], function(){
 
   // Routes that don't require the user to be logged in
   Route::post('/login', 'AuthController@login');
@@ -50,9 +53,15 @@ Route::group(['namespace' => "api", 'prefix' => 'api'], function(){
         Route::resource('/works', 'WorksController');
         Route::resource('/profiles', 'ProfilesController');
         Route::resource('/fas', 'FasController');
-        Route::resource('/experiences','ExperiencesController');
+        Route::resource('experiences','ExperiencesController');
         Route::resource('/skills','SkillsController');
         Route::resource('/groups','GroupsController');
+
+        // Nested resource routes
+        Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy']]);
+        Route::resource('user.fas','UsersFasController', ['only' => ['index', 'store']]);
+        Route::resource('user.profiles','UsersProfilesController', ['only' => ['index']]);
+        Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']]);
 
 	}); // end of logged in requirement group
 }); // end of API namespaced routes

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
-use Auth;
-// include all models
+
+use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Work;
 use App\Experience;
@@ -18,20 +18,19 @@ use App\Skill;
 use App\Group;
 use App\Fa;
 
-class FasController extends Controller
+class UsersExperiencesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, User $user)
     {
-        //
-        // get all FAs
-        $user = Auth::guard('api')->user();
-        $user->fas;
-        return response()->json($fa);
+        // Show all experiences for this user
+        $experiences = $user->experiences;
+        return response()->json($experiences);
+
     }
 
     /**
@@ -50,11 +49,11 @@ class FasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user)
     {
-        //
-        $user = Auth::guard('api')->user();
-        if (Fa::create(Input::all())) {
+        // 
+
+        if ($user->experiences()->create(Input::all())) {
           return response()->json(['success' => '1']);
         }
         else{
@@ -68,11 +67,10 @@ class FasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user, $experiences)
     {
         //
-        $fa = Fa::findOrFail($id);
-        return response()->json($fa);
+
     }
 
     /**
@@ -93,13 +91,12 @@ class FasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user, $experiences)
     {
-        // update an existing record with new values
-        $user = Auth::guard('api')->user();
-        $fa = Fa::findOrFail($id);
+        //
+        $exp = Experience::findOrFail($experiences);
         $input = $request->all();
-        if ($fa->fill($input)->save()) {
+        if ($exp->fill($input)->save()) {
           return response()->json(['success' => '1']);
         }
         else{
@@ -116,8 +113,5 @@ class FasController extends Controller
     public function destroy($id)
     {
         //
-        $fa = Fa::findOrFail($id);
-        $fa->delete();
-        return response()->json(['success' => '1']);
     }
 }

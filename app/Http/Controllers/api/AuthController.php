@@ -32,14 +32,16 @@ class AuthController extends Controller
             $api_token = str_random(60);
             $user->api_token = $api_token;
             $user->save();
+            return response()->json(['id' => $message, 'api_token' => $api_token, 'error' => '0']);
     	}
     	
         else
     	{
-    		$message = NULL;
+    		$message = "Authentication failed";
+            return response()->json(['error' => $message]);
     	}
 
-    	return response()->json(['id' => $message, 'api_token' => $api_token]);
+    	
     }
 
 

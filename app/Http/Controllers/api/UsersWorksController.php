@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
-use Auth;
-// include all models
+
+use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Work;
 use App\Experience;
@@ -18,20 +18,18 @@ use App\Skill;
 use App\Group;
 use App\Fa;
 
-class FasController extends Controller
+class UsersWorksController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, User $user)
     {
         //
-        // get all FAs
-        $user = Auth::guard('api')->user();
-        $user->fas;
-        return response()->json($fa);
+        $works = $user->works;
+        return response()->json($works);
     }
 
     /**
@@ -50,12 +48,12 @@ class FasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $user)
     {
         //
-        $user = Auth::guard('api')->user();
-        if (Fa::create(Input::all())) {
-          return response()->json(['success' => '1']);
+        
+        if ($user->works()->create(Input::all())) {
+          return response()->json(['success' => '1', 'object' => ]);
         }
         else{
           return response()->json(['success' => '0']);
@@ -71,8 +69,6 @@ class FasController extends Controller
     public function show($id)
     {
         //
-        $fa = Fa::findOrFail($id);
-        return response()->json($fa);
     }
 
     /**
@@ -95,16 +91,7 @@ class FasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // update an existing record with new values
-        $user = Auth::guard('api')->user();
-        $fa = Fa::findOrFail($id);
-        $input = $request->all();
-        if ($fa->fill($input)->save()) {
-          return response()->json(['success' => '1']);
-        }
-        else{
-          return response()->json(['success' => '0']);
-        }
+        //
     }
 
     /**
@@ -116,8 +103,5 @@ class FasController extends Controller
     public function destroy($id)
     {
         //
-        $fa = Fa::findOrFail($id);
-        $fa->delete();
-        return response()->json(['success' => '1']);
     }
 }

@@ -65,7 +65,7 @@ class ProfilesController extends Controller
     {
         // update an existing record with new values
         $user = Auth::guard('api')->user();
-        $profile = Profile::findOrFail($id);
+        $profile = $user->profile;
         $input = $request->all();
         if ($profile->fill($input)->save()) {
           return response()->json(['success' => '1']);
@@ -84,7 +84,8 @@ class ProfilesController extends Controller
     public function destroy($id)
     {
         //
-        $profile = Profile::findOrFail($id);
+        $user = Auth::guard('api')->user();
+        $profile = $user->profile;
         $profile->delete();
         return response()->json(['success' => '1']);
     }

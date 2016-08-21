@@ -69,7 +69,8 @@ class ExperiencesController extends Controller
     public function show($id)
     {
         //
-        $exp = Experience::findOrFail($id);
+        $user = User::findOrFail($id);
+        $exp = $user->experiences;
         return response()->json($exp);
     }
 
@@ -95,7 +96,7 @@ class ExperiencesController extends Controller
     {
         // update an existing record with new values
         $user = Auth::guard('api')->user();
-        $exp = Experience::findOrFail($id);
+        $exp = $user->experiences;
         $input = $request->all();
         if ($exp->fill($input)->save()) {
           return response()->json(['success' => '1']);
@@ -114,7 +115,8 @@ class ExperiencesController extends Controller
     public function destroy($id)
     {
         //
-        $exp = Experience::findOrFail($id);
+        $user = Auth::guard('api')->user();
+        $exp = $user->experiences;
         $exp->delete();
         return response()->json(['success' => '1']);
     }
