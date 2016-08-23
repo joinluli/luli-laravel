@@ -75,7 +75,15 @@ class ProfilesController extends Controller
         $user = Auth::guard('api')->user();
         $profile = $user->profile;
         $input = $request->all();
+        $image = Input::file('dp');
         if ($profile->fill($input)->save()) {
+          $pr = $user->profile();
+          // move uploaded file
+          
+          $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
+          $destination_path = 'uploads/';
+          $pr->dp_permalink = "/".$destination_path.$filename;
+          $pr->save();
           return response()->json(['success' => '1']);
         }
         else{
