@@ -53,7 +53,7 @@ class UsersWorksController extends Controller
         //
         
         if ($user->works()->create(Input::all())) {
-          return response()->json(['success' => '1', 'object' => ]);
+          return response()->json(['success' => '1']);
         }
         else{
           return response()->json(['success' => '0']);

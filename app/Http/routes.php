@@ -58,10 +58,10 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
         Route::resource('/groups','GroupsController');
 
         // Nested resource routes
-        Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy']]);
-        Route::resource('user.fas','UsersFasController', ['only' => ['index', 'store']]);
-        Route::resource('user.profiles','UsersProfilesController', ['only' => ['index']]);
-        Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']]);
+        Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy', 'store']] );
+        Route::resource('user.fas','UsersFasController', ['only' => ['index', 'store']] );
+        Route::resource('user.profiles','UsersProfilesController', ['only' => ['index']] );
+        Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']] );
 
 	}); // end of logged in requirement group
 }); // end of API namespaced routes
