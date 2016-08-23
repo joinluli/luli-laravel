@@ -31,7 +31,15 @@ class ProfilesController extends Controller
         //
         $user = Auth::guard('api')->user();
         if (is_null($user->profile)) {
-          Profile::create(Input::all());
+          $pr = $user->profile()->create(Input::all());
+          // move uploaded file
+          $image = Input::file('dp');
+          $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
+          $destination_path = 'uploads/';
+          $pr->dp_permalink = "/".$destination_path.$filename;
+          $pr->save();
+          // Input::merge(array('user_id', $user->id));
+          // Profile::create(Input::all());
           return response()->json(['success' => '1']);
         }
         else{
