@@ -59,6 +59,7 @@ class ProfilesController extends Controller
         //
         $user = User::find($id);
         $profile = $user->profile;
+        $profile['username'] = $user->username;
         return response()->json($profile);
     }
 
@@ -79,11 +80,12 @@ class ProfilesController extends Controller
         if ($profile->fill($input)->save()) {
           $pr = $user->profile();
           // move uploaded file
-          
-          $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
-          $destination_path = 'uploads/';
-          $pr->dp_permalink = "/".$destination_path.$filename;
-          $pr->save();
+          if(isset($image)){
+            $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
+            $destination_path = 'uploads/';
+            $pr->dp_permalink = "/".$destination_path.$filename;
+            $pr->save();
+          }
           return response()->json(['success' => '1']);
         }
         else{

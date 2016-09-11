@@ -4,10 +4,11 @@ namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Input;
 use Auth;
-// include all models
+use Validator;
 use App\User;
 use App\Work;
 use App\Experience;
@@ -17,8 +18,12 @@ use App\Profile;
 use App\Skill;
 use App\Group;
 use App\Fa;
+use App\JobPosting;
+use App\JobType;
+use App\Company;
 
-class FasController extends Controller
+
+class JobPostingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,10 +33,6 @@ class FasController extends Controller
     public function index()
     {
         //
-        // get all FAs
-        $user = Auth::guard('api')->user();
-        $user->fas;
-        return response()->json($fa);
     }
 
     /**
@@ -52,14 +53,23 @@ class FasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
         $user = Auth::guard('api')->user();
-        if (Fa::create(Input::all())) {
-          return response()->json(['success' => '1']);
+        if($request['draft'] == "1"){
+            JobPosting::create($request->all());
         }
         else{
-          return response()->json(['success' => '0']);
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'start_date' => 'required',
+                'location_id' => 'required',
+                ]);
+            if($validator->fails()){
+                return response()->json(['success' => '0', 'errors' => $validator->errors()]);
+            }
+            JobPosting::create(Input::all());
         }
+        return response()->json(['success' => '1']);
     }
 
     /**
@@ -70,9 +80,26 @@ class FasController extends Controller
      */
     public function show($id)
     {
-        //
-        $fa = Fa::findOrFail($id);
-        return response()->json($fa);
+        
+        $jp = JobPosting::find($id);
+        // get the currently logged in user
+        $user = Auth::guard('api')->user();
+        // first check if the job posting $jp exists
+        if($jp){
+            // If the user who created the job post tries to view it, show it regardless of its published status
+            # OR
+            // if a user who is not the creator of the posting views it, display only if its published
+            if(($user->id == $jp->user_id) || ($jp->published)){
+                $message = $jp;
+            }
+            else{
+                $message = "This job posting is not yet published";    
+            }
+        }
+        else{
+            $message = "The job posting is invalid or no longer exists";
+        }
+        return response()->json($message);
     }
 
     /**
@@ -95,19 +122,7 @@ class FasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // update an existing record with new values
-        $user = Auth::guard('api')->user();
-        // check if user has a profile
-        if(isset($user->profile)){ 
-            $fa = $user->profile;
-            $input = $request->all();
-            if ($fa->fill($input)->save()) {
-              return response()->json(['success' => '1']);
-            }
-        }
-        else{
-          return response()->json(['success' => '0', 'error' => 'Profile does not exists']);
-        }
+        //
     }
 
     /**
@@ -119,8 +134,5 @@ class FasController extends Controller
     public function destroy($id)
     {
         //
-        $fa = Fa::findOrFail($id);
-        $fa->delete();
-        return response()->json(['success' => '1']);
     }
 }

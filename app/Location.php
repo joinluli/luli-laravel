@@ -13,4 +13,8 @@ class Location extends Model
     public function profiles(){
       return $this->hasMany('App\Profile');
     }
+
+    public function job_postings(){
+    	return $this->hasMany('App\JobPosting');
+    }
 }

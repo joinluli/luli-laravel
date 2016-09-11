@@ -56,12 +56,14 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
         Route::resource('experiences','ExperiencesController');
         Route::resource('/skills','SkillsController');
         Route::resource('/groups','GroupsController');
+        Route::resource('job_postings', 'JobPostingsController', ['only' => ['show', 'index']]);
 
         // Nested resource routes
         Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy', 'store']] );
         Route::resource('user.fas','UsersFasController', ['only' => ['index', 'store']] );
         Route::resource('user.profiles','UsersProfilesController', ['only' => ['index']] );
         Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']] );
+        Route::resource('user.job_postings', 'UsersJobPostingsController', ['only' => ['index', 'store', 'destroy', 'update']]);
 
 	}); // end of logged in requirement group
 }); // end of API namespaced routes

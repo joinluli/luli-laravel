@@ -38,6 +38,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Work');
     }
 
+    public function job_postings(){
+        return $this->hasMany('App\JobPosting');
+    }
+
     public function skills(){
       return $this->belongsToMany('App\Skill')->withPivot('rec_count');
     }
