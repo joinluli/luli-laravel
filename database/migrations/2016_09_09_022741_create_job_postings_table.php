@@ -29,6 +29,7 @@ class CreateJobPostingsTable extends Migration
             $table->integer('job_type_id')->unsigned()->index();
             $table->integer('company_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('style_id')->unsigned()->index();
             $table->timestamps();
         });
     }

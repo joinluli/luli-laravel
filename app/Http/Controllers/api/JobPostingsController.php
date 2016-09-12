@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Validator;
@@ -21,7 +23,7 @@ use App\Fa;
 use App\JobPosting;
 use App\JobType;
 use App\Company;
-
+use App\Tag;
 
 class JobPostingsController extends Controller
 {
@@ -134,5 +136,25 @@ class JobPostingsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // search terms
+    public function search($search_terms){
+        
+        $search_terms = explode("|", $search_terms);
+        $search_results = array();
+        $ids_array = array();
+        foreach ($search_terms as $term) {
+            $ids_array[] = Tag::where('tag', $term)->first()->job_postings->pluck('id');  
+        }
+        $jp_ids = array_collapse($ids_array);          
+        $id_count = array_count_values($jp_ids);
+        arsort($id_count);
+        $jp_ids = array_keys($id_count);
+
+        foreach ($jp_ids as $id) {
+            $search_results[] = JobPosting::find($id);
+        }
+        return response()->json($search_results);
     }
 }

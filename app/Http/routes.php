@@ -65,6 +65,9 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
         Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']] );
         Route::resource('user.job_postings', 'UsersJobPostingsController', ['only' => ['index', 'store', 'destroy', 'update']]);
 
+        // search testing
+        Route::get('search/{search_terms}', 'JobPostingsController@search');
+
 	}); // end of logged in requirement group
 }); // end of API namespaced routes
 
