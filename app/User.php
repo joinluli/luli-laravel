@@ -53,4 +53,12 @@ class User extends Authenticatable
     public function groups(){
       return $this->belongsToMany('App\Group');
     }
+
+    public function job_applications(){
+        return $this->hasMany('App\JobApplication');
+    }
+
+    public function job_favorites(){
+        return $this->hasMany('App\JobFavorite');
+    }
 }

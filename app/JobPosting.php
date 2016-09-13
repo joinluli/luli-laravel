@@ -33,4 +33,8 @@ class JobPosting extends Model
     public function tags(){
         return $this->belongsToMany('App\Tag');
     }
+
+    public function job_applications(){
+        return $this->hasMany('App\JobApplication');
+    }
 }

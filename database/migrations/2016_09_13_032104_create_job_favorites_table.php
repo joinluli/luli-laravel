@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFasTable extends Migration
+class CreateJobFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateFasTable extends Migration
      */
     public function up()
     {
-        Schema::create('fas', function (Blueprint $table) {
+        Schema::create('job_favorites', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->boolean('achievement');
-            $table->string('image_permalink');
-            $table->integer('user_id')->unisgned()->index();
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('job_posting_id')->unsigned()->index();
+            $table->boolean('applied');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateFasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('fas');
+        Schema::drop('job_favorites');
     }
 }

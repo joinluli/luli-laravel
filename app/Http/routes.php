@@ -57,6 +57,7 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
         Route::resource('/skills','SkillsController');
         Route::resource('/groups','GroupsController');
         Route::resource('job_postings', 'JobPostingsController', ['only' => ['show', 'index']]);
+        Route::resource('job_applications', 'JobApplicationsController');
 
         // Nested resource routes
         Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy', 'store']] );
