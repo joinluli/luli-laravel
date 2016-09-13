@@ -35,7 +35,8 @@ class ProfilesController extends Controller
           // move uploaded file
           $image = Input::file('dp');
           $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
-          $destination_path = 'uploads/';
+          $destination_path = "uploads/";
+          Input::file('dp')->move($destination_path, $filename);
           $pr->dp_permalink = "/".$destination_path.$filename;
           $pr->save();
           // Input::merge(array('user_id', $user->id));
@@ -82,7 +83,7 @@ class ProfilesController extends Controller
           // move uploaded file
           if(isset($image)){
             $filename = md5(microtime() . $image->getClientOriginalName()) . "." . $image->getClientOriginalExtension();
-            $destination_path = 'uploads/';
+            $destination_path = './uploads/';
             $pr->dp_permalink = "/".$destination_path.$filename;
             $pr->save();
           }
