@@ -58,10 +58,10 @@ class WorksController extends Controller
         $fileName = rand(1111111,9999999).'.'.$extension;
         Input::file('image')->move($destinationPath, $fileName);
 
-        $work->image_permalink = "/uploads".$fileName."";
+        $work->image_permalink = '/uploads/'.$fileName."";
         $work->user_id = $user->id;
-        $work->comment = $request['comment'];
-        if($work->save){
+        $work->comment = $request['comment'] ?: ""; // the 'comment' field MUST have a value, without which it'll throw errors. This conditional assignment makes sure the field always has some value, even if its not given by the user.
+        if($work->save()){
           return response()->json(['success' => "1"]);
         }
         else{

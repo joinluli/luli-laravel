@@ -39,6 +39,7 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
         //
         Route::get('/recommend_skill/{skill_id}/{user_id}', 'SkillsController@recommend_skill');
         Route::get('/derecommend_skill/{skill_id}/{user_id}', 'SkillsController@derecommend_skill');
+        Route::get('/user/{user_id}/like_job_post/{job_application_id}', 'UsersJobFavoritesController@heart_dat');
 
         // join and unjoin groups
         Route::get('/join_group/{group_id}', 'GroupsController@join_group');
@@ -61,10 +62,12 @@ Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], 
 
         // Nested resource routes
         Route::resource('user.experiences','UsersExperiencesController', ['only' => ['index', 'destroy', 'store']] );
+        Route::resource('user.skills', 'UsersSkillsController', ['only' => ['index']]);
         Route::resource('user.fas','UsersFasController', ['only' => ['index', 'store']] );
         Route::resource('user.profiles','UsersProfilesController', ['only' => ['index']] );
         Route::resource('user.works','UsersWorksController', ['only' => ['index', 'store']] );
         Route::resource('user.job_postings', 'UsersJobPostingsController', ['only' => ['index', 'store', 'destroy', 'update']]);
+        Route::resource('user.job_applications', 'UsersJobApplicationsController', ['only' => ['index']]);
 
         // search testing
         Route::get('search/{search_terms}', 'JobPostingsController@search');

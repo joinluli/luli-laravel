@@ -60,7 +60,7 @@ class SkillsController extends Controller
             }
             else{
               // rec_count is recommendation count. if the user already has a skill, increment by 1
-              // $user->skills->where('skill', $skill)->first()->pivot->rec_count += 1;
+              $user->skills->where('skill', $skill)->first()->pivot->rec_count += 1;
 
             }
 
@@ -68,6 +68,7 @@ class SkillsController extends Controller
         $users_skill_array = $user->skills;
         // return an array of users skills as json
         return response()->json($users_skill_array);
+            
     }
 
     /**

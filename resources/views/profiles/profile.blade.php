@@ -1,7 +1,7 @@
 @extends('layouts.no_nav')
 
 @section('content')
-<div class="container">
+<div class="">
   <div class="col-sm-12">
     <h1>User profile</h1>
     <img src="{{ url($profile['dp_permalink']) }}" alt="" width="300"/>
@@ -50,10 +50,10 @@
       <div id="exTab1" class="container">
           <ul  class="nav nav-pills">
         			<li class="active">
-                <h2><a  href="#2a" data-toggle="tab">Experience</a></h2>
+                <h4><a  href="#2a" data-toggle="tab">Experience      |</a></h4>
         			</li>
         			<li>
-                <h2><a href="#3a" data-toggle="tab">Freelance</a></h2>
+                <h4><a href="#3a" data-toggle="tab">      Freelance      |</a></h4>
         			</li>
         			<li>
                 <h2><a href="#4a" data-toggle="tab">Training</a></h2>
