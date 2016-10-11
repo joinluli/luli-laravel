@@ -23,6 +23,7 @@ use App\Fa;
 use App\JobPosting;
 use App\JobType;
 use App\Company;
+use App\Tag;
 
 class UsersJobPostingsController extends Controller
 {
@@ -72,7 +73,9 @@ class UsersJobPostingsController extends Controller
                 return response()->json(['success' => '0', 'errors' => $validator->errors()]);
             }
             // validation passes, and the data is stored with the below command
-            $user->job_postings()->create($request->all());
+            $jb = $user->job_postings()->create($request->all());
+            // now add tags
+
         }
         // Either way when a row is created, return success
         return response()->json(['success' => '1']);
@@ -149,5 +152,16 @@ class UsersJobPostingsController extends Controller
         else{
             return response()->json(['success' => '0', 'errors' => "You are not authorized to perform this action"]);
         }
+    }
+
+    // custom method to check if a tag already exists, and add it to the table if it doesn't
+    public function store_tags($tag){
+        $t = Tag::firstOrCreate(['tag' => $tag]);
+        return $t;
+    }
+
+    // attach tags
+    public function attach_tags(){
+        
     }
 }

@@ -21,7 +21,36 @@ Route::model('user', 'App\User');
 // Authentication routes - login and registration
 Route::auth();
 
+// general web namespace
 Route::get('/home', 'HomeController@index');
+Route::post('register', 'Auth\AuthController@register');
+
+// Login protected routes
+Route::group(['middleware' => 'auth'], function(){
+
+    // routes for profiles
+    Route::get('create_profile_1', 'ProfilesController@create_1');
+    Route::get('create_profile_2', 'ProfilesController@create_2');
+    Route::get('create_profile_3', 'ProfilesController@create_3');
+    Route::get('create_profile_4', 'ProfilesController@create_4');
+    Route::get('create_profile_5', 'ProfilesController@create_5');
+    // Post routes
+    Route::post('create_profile_1', 'ProfilesController@store_1');
+    Route::post('create_profile_2', 'ProfilesController@store_2');
+    Route::post('create_profile_3', 'ProfilesController@store_3');
+    Route::post('create_profile_4', 'ProfilesController@store_4');
+    Route::post('create_profile_5', 'ProfilesController@store_5');
+
+    // Route for my profile
+    Route::get('my_profile', 'ProfilesController@my_profile');
+
+});
+
+
+
+/**
+ * API ROUTES BELOW. DO NOT MODIFY ANYTHING IF YOU ARE ATTEMPTING TO CHANGE THE WEB ROUTES.
+ */
 
 // All routes for the API are namespaced in the following group. They will all be of the format /api/<route_name>
 Route::group(['namespace' => "api", 'prefix' => 'api', 'middleware' => 'cors'], function(){

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
+use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -68,5 +70,35 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function register(Request $request){
+        $data['email'] = $request['email'];
+        $data['username'] = $request['username'];
+        $data['password'] = $request['password'];
+        $data['password_confirmation'] = $request['password_confirmation'];
+        // $data['api_token'] = str_random(60);
+
+        // Validate the inputs
+        $validator = Validator::make($data, [
+            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'api_token' => 'unique:users',
+        ]);
+        
+        // If validation fails, return an error response
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        }
+
+        $user = new User;
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->api_token = $data['api_token'];
+        $user->username = $data['username'];
+        if ($user->save()) {
+            return redirect('/create_profile_1');
+        }
     }
 }
