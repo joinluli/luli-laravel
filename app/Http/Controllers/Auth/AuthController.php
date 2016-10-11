@@ -95,9 +95,12 @@ class AuthController extends Controller
         $user = new User;
         $user->email = $data['email'];
         $user->password = bcrypt($data['password']);
-        $user->api_token = $data['api_token'];
+        $api_token = str_random(60);
+        $user->api_token = $api_token;
+        // $user->api_token = $data['api_token'];
         $user->username = $data['username'];
         if ($user->save()) {
+            Auth::login($user);
             return redirect('/create_profile_1');
         }
     }
