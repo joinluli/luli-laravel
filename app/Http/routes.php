@@ -37,12 +37,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('create_profile_3', 'ProfilesController@create_3');
     Route::get('create_profile_4', 'ProfilesController@create_4');
     Route::get('create_profile_5', 'ProfilesController@create_5');
+    Route::get('create_social', 'ProfilesController@create_social');
     // Post routes
     Route::post('create_profile_1', 'ProfilesController@store_1');
     Route::post('create_profile_2', 'ProfilesController@store_2');
     Route::post('create_profile_3', 'ProfilesController@store_3');
     Route::post('create_profile_4', 'ProfilesController@store_4');
     Route::post('create_profile_5', 'ProfilesController@store_5');
+    Route::post('create_social', 'ProfilesController@store_social');
 
     // Route for my profile
     Route::get('my_profile', 'ProfilesController@my_profile');

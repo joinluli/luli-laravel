@@ -4,10 +4,10 @@
 	{!! Form::open(['url' => 'create_profile_1']) !!}
 
 	{!! Form::label('first_name','First Name') !!}
-	{!! Form::text('first_name', '', ['class' => 'form-input']) !!}
+	{!! Form::text('first_name', $first_name, ['class' => 'form-input']) !!}
 	<br><br>
 	{!! Form::label('last_name','Last Name') !!}
-	{!! Form::text('last_name', '', ['class' => 'form-input']) !!}
+	{!! Form::text('last_name', $last_name, ['class' => 'form-input']) !!}
 	<br><br>
 	{!! Form::label('speciality','Speciality') !!}
 	{!! Form::text('speciality', '', ['class' => 'form-input']) !!}
@@ -29,4 +29,3 @@ $( "#autocomplete" ).autocomplete({
 });
 </script>
 @endsection
-

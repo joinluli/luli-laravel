@@ -37,9 +37,13 @@ class ProfilesController extends Controller
      */
     public function create_1()
     {
+        
         // Get a list of cities and euqate them to autocomplete in the view
+        $user = Auth::user();
         $cities = Location::all()->pluck('location_long');
         $data['city'] = json_encode($cities);
+        $data['first_name'] = $user->profile->first_name;
+        $data['last_name'] = $user->profile->last_name;
         return view('profiles.create_1', $data);
     }
     public function create_2()
@@ -63,6 +67,12 @@ class ProfilesController extends Controller
         return view('profiles.create_5');
     }
 
+    // for folks logging in from social websites, this function displays a page to enter only their username
+    public function create_social(){
+      $user = Auth::user();
+      $data['username'] = $user->username;
+      return view('profiles.create_social', $data);
+    }
 
     // store the data from the forms
     public function store_1(Request $request)
@@ -76,8 +86,9 @@ class ProfilesController extends Controller
         // get the location id from city
         $location_id = Location::where('location_long', $city)->first()->id;
         // Store data
-        if(!(Auth::user()->profile)){
-            Profile::create(['first_name' => $first_name, 'last_name' => $last_name, 'tagline_1' => $tagline_1, 'location_id' => $location_id, 'user_id' => $user_id]);
+        if(!($user->onboarded)){
+            $profile = Profile::firstOrNew(['first_name' => $first_name, 'last_name' => $last_name, 'tagline_1' => $tagline_1, 'location_id' => $location_id, 'user_id' => $user_id]);
+            $profle->save();
             return redirect('/create_profile_2');
             // return $location_id;
         }
@@ -171,7 +182,23 @@ class ProfilesController extends Controller
         $start_date = $request['start_date'];
         $end_date = $request['end_date'];
         Experience::create(['title' => $title, 'place' => $place, 'start_date' => $start_date, 'end_date' => $end_date, 'exp_id' => 1, 'user_id' => $user->id]);
+        $user->update(['onboarded' => 1]);
         return redirect('my_profile');
+    }
+
+
+    // store the username for social login folks
+    public function store_social(Request $request){
+      $user = Auth::user();
+      $user->update(['username' => str_random(15)]);
+      $validator = Validator::make(['username' => $request['username']], ['username' => 'required|unique:users']);
+      if($validator->passes()){
+        $user->update(['username' => $request['username']]);
+        return redirect('create_profile_1');
+      }
+      else{
+        return back()->withErrors($validator);
+      }
     }
     /**
      * Store a newly created resource in storage.

@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Contracts\User as ProviderUser;
 
 class SocialAccountService
@@ -9,7 +9,7 @@ class SocialAccountService
     public function createOrGetUser(ProviderUser $providerUser)
     {
         $account = SocialAccount::whereProvider('facebook')->whereProviderUserId($providerUser->getId())->first();
-
+        // Log::alert(dd($providerUser));
         if ($account) {
             return $account->user;
         } else {
@@ -22,11 +22,15 @@ class SocialAccountService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (!$user) {
-
+                $em = $providerUser->getEmail();
+                $username =  explode("@", $em)[0];
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
-                    'name' => $providerUser->getName(),
+                    'username' => $username,
                 ]);
+                $first_name = $providerUser->user['first_name'];
+                $last_name = $providerUser->user['last_name'];
+                Profile::create(['first_name' => $first_name, 'last_name' => $last_name, 'user_id' => $user->id]);
             }
 
             $account->user()->associate($user);
