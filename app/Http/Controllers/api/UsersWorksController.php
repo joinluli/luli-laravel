@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use Auth;
 use Illuminate\Support\Facades\Input;
+
 use App\User;
 use App\Work;
 use App\Experience;
@@ -48,15 +48,26 @@ class UsersWorksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $user)
+    public function store(Request $request)
     {
-        //
-        
-        if ($user->works()->create(Input::all())) {
-          return response()->json(['success' => '1']);
+
+        $user = $user = Auth::guard('api')->user();
+        $work = new Work;
+        // Some processing
+        $extension = Input::file('image')->getClientOriginalExtension();
+        $destinationPath = 'uploads';
+        $fileName = rand(1111111,9999999).'.'.$extension;
+        Input::file('image')->move($destinationPath, $fileName);
+
+        $work->image_permalink = '/uploads/'.$fileName."";
+        $work->user_id = $user->id;
+        $work->title = $request['title'];
+        $work->comment = $request['comment'] ?: ""; // the 'comment' field MUST have a value, without which it'll throw errors. This conditional assignment makes sure the field always has some value, even if its not given by the user.
+        if($work->save()){
+          return response()->json(['success' => "1"]);
         }
         else{
-          return response()->json(['success' => '0']);
+          return response()->json(['success' => "0"]);
         }
     }
 

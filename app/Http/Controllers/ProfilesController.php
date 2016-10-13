@@ -78,6 +78,7 @@ class ProfilesController extends Controller
     public function store_1(Request $request)
     {
         // Get data from post request + declare variables and do some data processing
+        $user = Auth::user();
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $tagline_1 = $request['speciality'];
@@ -88,7 +89,7 @@ class ProfilesController extends Controller
         // Store data
         if(!($user->onboarded)){
             $profile = Profile::firstOrNew(['first_name' => $first_name, 'last_name' => $last_name, 'tagline_1' => $tagline_1, 'location_id' => $location_id, 'user_id' => $user_id]);
-            $profle->save();
+            $profile->save();
             return redirect('/create_profile_2');
             // return $location_id;
         }

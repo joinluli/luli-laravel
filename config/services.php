@@ -22,7 +22,7 @@ return [
     'facebook' => [
         'client_id' => '1333973679976640',
         'client_secret' => '451229cc91c45c069aba6e89dc1835db',
-        'redirect' => 'http://localhost:8000/callback',
+        'redirect' => 'http://app.joinluli.com/callback',
     ],
 
     'ses' => [

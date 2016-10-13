@@ -60,6 +60,7 @@ class WorksController extends Controller
 
         $work->image_permalink = '/uploads/'.$fileName."";
         $work->user_id = $user->id;
+        $work->title = $request['title'];
         $work->comment = $request['comment'] ?: ""; // the 'comment' field MUST have a value, without which it'll throw errors. This conditional assignment makes sure the field always has some value, even if its not given by the user.
         if($work->save()){
           return response()->json(['success' => "1"]);

@@ -24,9 +24,11 @@ class SocialAccountService
             if (!$user) {
                 $em = $providerUser->getEmail();
                 $username =  explode("@", $em)[0];
+                $api_token = str_random(60);
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
                     'username' => $username,
+                    'api_token' => $api_token,
                 ]);
                 $first_name = $providerUser->user['first_name'];
                 $last_name = $providerUser->user['last_name'];
