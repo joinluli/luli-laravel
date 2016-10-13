@@ -2,21 +2,27 @@
 
 namespace App;
 use Illuminate\Support\Facades\Log;
-use Laravel\Socialite\Contracts\User as ProviderUser;
+// use Laravel\Socialite\Contracts\User as ProviderUser;
+use Laravel\Socialite\Contracts\Provider;
 
 class SocialAccountService
 {
-    public function createOrGetUser(ProviderUser $providerUser)
+    public function createOrGetUser(Provider $provider)
     {
-        $account = SocialAccount::whereProvider('facebook')->whereProviderUserId($providerUser->getId())->first();
+        
+        $providerUser = $provider->user();
+        $providerName = class_basename($provider);
+
+        $account = SocialAccount::whereProvider($providerName)->whereProviderUserId($providerUser->getId())->first();
         // Log::alert(dd($providerUser));
+         // dd($providerUser->user['name']['familyName']);
         if ($account) {
             return $account->user;
         } else {
 
             $account = new SocialAccount([
                 'provider_user_id' => $providerUser->getId(),
-                'provider' => 'facebook'
+                'provider' => $providerName
             ]);
 
             $user = User::whereEmail($providerUser->getEmail())->first();
@@ -30,8 +36,15 @@ class SocialAccountService
                     'username' => $username,
                     'api_token' => $api_token,
                 ]);
-                $first_name = $providerUser->user['first_name'];
-                $last_name = $providerUser->user['last_name'];
+                // The first name and last names from google and facebook are different, so putting a check for that here
+                if($providerName == 'GoogleProvider'){
+                    $first_name = $providerUser->user['name']['givenName'] ;
+                    $last_name = $providerUser->user['name']['familyName'] ;
+                }
+                else{
+                    $first_name = $providerUser->user['first_name'];
+                    $last_name = $providerUser->user['last_name'];
+                }
                 Profile::create(['first_name' => $first_name, 'last_name' => $last_name, 'user_id' => $user->id]);
             }
 
@@ -41,6 +54,6 @@ class SocialAccountService
             return $user;
 
         }
-
     }
+
 }

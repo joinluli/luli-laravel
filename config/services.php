@@ -22,7 +22,13 @@ return [
     'facebook' => [
         'client_id' => '1333973679976640',
         'client_secret' => '451229cc91c45c069aba6e89dc1835db',
-        'redirect' => 'http://app.joinluli.com/callback',
+        'redirect' => 'http://app.joinluli.com/callback/facebook',
+    ],
+
+    'google' => [
+        'client_id' => '822091711427-js0lgfeppr1n2jdv2n63akp1ue1slipl.apps.googleusercontent.com',
+        'client_secret' => 'S7skiCNXpYT28w4OafJZN1Gl',
+        'redirect' => 'http://app.joinluli.com/callback/google',
     ],
 
     'ses' => [

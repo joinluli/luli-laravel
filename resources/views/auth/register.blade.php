@@ -71,9 +71,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
+                                <br> <br>
+                                <a href="redirect/facebook" class="btn btn-primary">Sign up with Facebook</a> 
+                                <a href="redirect/google" class="btn btn-danger">Sign up with Google</a>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>

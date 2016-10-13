@@ -25,8 +25,8 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 Route::post('register', 'Auth\AuthController@register');
 
-Route::get('/redirect', 'SocialAuthController@redirect');
-Route::get('/callback', 'SocialAuthController@callback');
+Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+Route::get('/callback/{provider}', 'SocialAuthController@callback');
 
 // Login protected routes
 Route::group(['middleware' => 'auth'], function(){
