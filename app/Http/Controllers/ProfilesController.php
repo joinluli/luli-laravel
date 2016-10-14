@@ -42,8 +42,14 @@ class ProfilesController extends Controller
         $user = Auth::user();
         $cities = Location::all()->pluck('location_long');
         $data['city'] = json_encode($cities);
-        $data['first_name'] = $user->profile->first_name;
-        $data['last_name'] = $user->profile->last_name;
+        if ($user->profile) {
+          $data['first_name'] = $user->profile->first_name;
+          $data['last_name'] = $user->profile->last_name;
+        } 
+        else{
+          $data['first_name'] = "";
+          $data['last_name'] = "";
+        }
         return view('profiles.create_1', $data);
     }
     public function create_2()
