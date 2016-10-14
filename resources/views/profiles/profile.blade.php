@@ -1,5 +1,4 @@
-@extends('layouts.no_nav')
-
+@extends('layouts.app')
 @section('content')
 <div class="">
   <div class="col-sm-12">

@@ -1,0 +1,38 @@
+/* Common styles */
+body{
+	background: #eaeaea;
+}
+
+.voffset-10{
+	margin-top: 10px;
+}
+.caps{
+	text-transform: uppercase;
+}
+.capitalize{
+	text-transform: capitalize;
+}
+/* navbar styles */
+.navbar-default{
+	background: #fff;
+}
+a.navbar-brand {
+    padding: 5px 15px !important;
+}
+/* portfolio general rules */
+.card{
+	background: #fff;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.card div{
+	padding-right: 0px;
+	padding-left: 0px;
+}
+img#dp-image{
+	height: 310px;
+	width: 100%;
+}
+.works img{
+	object-fit: cover;
+}

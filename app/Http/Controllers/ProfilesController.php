@@ -291,7 +291,9 @@ class ProfilesController extends Controller
       $data['training'] = $user->experiences->where('exp_type_id', 3);
       $data['skills'] = $user->skills;
       $data['groups'] = $user->groups;
+      $data['email'] = $user->email;
+      $data['username'] = $user->username;
 
-      return view('profiles.profile', $data);
+      return view('profiles.my_profile', $data);
     }
 }
