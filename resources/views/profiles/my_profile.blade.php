@@ -57,16 +57,31 @@
       <div class="col-sm-6">
          <h3 class="caps">Education</h3>
          @if(!empty($training))
-          {{  }}
+          @foreach($training as $tr)
+           <div class="well">
+            Title: {{ $tr['title'] }}
+            Place: {{ $tr['place'] }} <br>
+            From date: {{ $tr['from_date'] }}
+            To date: {{ $tr['to_date'] }} <br> 
+          </div>
+          @endforeach
         @endif
         <div class="dynamic-form-education">
-          <label for="skill">Skill</label>
-          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
-          <label for="skill">Skill</label>
-          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
-          <label for="skill">Skill</label>
-          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+          <label for="title">Course name</label>
+          <input type="text" name="title" value="" id="education-title">
+
+          <label for="place">Place</label>
+          <input type="text" name="place" value="" id="education-place">
+
+          <label for="from_date">From</label>
+          <input type="date" name="from_date" value="" id="education-fromdate">
+
+          <label for="to_date">To</label>
+          <input type="date" name="to_date" value="" id="education-todate">
+
+          <a href="#" class="btn" id="post-education">Add</a>
         </div>
+        <button id="add-education" class="btn btn-default">Add Education</button>
       </div>
       
       @if($experiences)
@@ -101,42 +116,5 @@
 @endsection
 
 @section('scripts')
-<script>
-  $.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-  $(document).ready(function(){
-    $("#lightSlider").lightSlider(); 
-
-    // ------- adding skills ----------
-    $("#add-skill").click(function(){
-        $('.dynamic-form-skill').show("fast");
-    });
-    // Post the skill
-    $("#post-skill").click(function(){
-
-      var skill = $("#skill-input").val();
-      $.post( "/skills", { skill: skill } , function(){
-        location.reload();
-      });
-
-    });
-
-    // ------------- adding education ------------
-     $("#add-education").click(function(){
-        $('.dynamic-form-education').show("fast");
-    });
-
-    // -------------- adding experience ----------
-
-    // ------------- adding F & A -------------
-
-  });
-  $.fn.editable.defaults.mode = 'inline';
-  $(document).ready(function() {
-    $('#username').editable();
-});
-</script>
+<script src="js/profilepage.js"></script>
 @endsection

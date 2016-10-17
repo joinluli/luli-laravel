@@ -50,7 +50,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('my_profile', 'ProfilesController@my_profile');
 
     // Resource routes
-    Route::resource('skills', 'SkillsController', ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('skills', 'SkillsController', ['only' => ['index', 'store', 'update','destroy']]);
+    Route::resource('educations', 'EducationsController', ['only' => ['index', 'store', 'update','destroy']]);
 
 });
 
