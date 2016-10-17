@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('styles')
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+@endsection
 
 @section('content')
 <div class="">
@@ -35,16 +38,37 @@
     <hr class="col-xs-12">
 
     <div class="col-sm-12 voffset-10"">
-      @if($skills)
       <div class="col-sm-6">
         <h3 class="caps">Skills</h3>
+        @if(!empty($skills))
+          <ul class="list-unstyled">
+            @foreach($skills as $skill)
+              <li>{{ $skill['skill'] }}</li>
+            @endforeach
+          </ul>
+        @endif
+        <div class="dynamic-form-skill">
+          <label for="skill">Skill</label>
+          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+        </div>
+        <button href="" id="add-skill" class="btn btn-default">Add Skill</button>
       </div>
-      @endif
-      @if($training != "")
+  
       <div class="col-sm-6">
          <h3 class="caps">Education</h3>
+         @if(!empty($training))
+          {{  }}
+        @endif
+        <div class="dynamic-form-education">
+          <label for="skill">Skill</label>
+          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+          <label for="skill">Skill</label>
+          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+          <label for="skill">Skill</label>
+          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+        </div>
       </div>
-      @endif
+      
       @if($experiences)
       <div class="col-sm-6">
          <h3 class="caps">Experience</h3>
@@ -78,8 +102,41 @@
 
 @section('scripts')
 <script>
+  $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
   $(document).ready(function(){
     $("#lightSlider").lightSlider(); 
+
+    // ------- adding skills ----------
+    $("#add-skill").click(function(){
+        $('.dynamic-form-skill').show("fast");
+    });
+    // Post the skill
+    $("#post-skill").click(function(){
+
+      var skill = $("#skill-input").val();
+      $.post( "/skills", { skill: skill } , function(){
+        location.reload();
+      });
+
+    });
+
+    // ------------- adding education ------------
+     $("#add-education").click(function(){
+        $('.dynamic-form-education').show("fast");
+    });
+
+    // -------------- adding experience ----------
+
+    // ------------- adding F & A -------------
+
   });
+  $.fn.editable.defaults.mode = 'inline';
+  $(document).ready(function() {
+    $('#username').editable();
+});
 </script>
 @endsection

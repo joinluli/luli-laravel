@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function(){
     // Route for my profile
     Route::get('my_profile', 'ProfilesController@my_profile');
 
+    // Resource routes
+    Route::resource('skills', 'SkillsController', ['only' => ['index', 'store', 'destroy']]);
+
 });
 
 

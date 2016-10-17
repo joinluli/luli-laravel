@@ -36,3 +36,6 @@ img#dp-image{
 .works img{
 	object-fit: cover;
 }
+div.dynamic-form{
+	display: none;
+}
