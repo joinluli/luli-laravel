@@ -37,6 +37,23 @@
     });
     // -------------- adding experience ----------
 
+    $("#add-experience").click(function(){
+        $('.dynamic-form-experience').toggle("fast");
+    });
+
+    $("#post-experience").click(function(){
+      var title = $("#experience-title").val();
+      var place = $("#experience-place").val();
+      var fromdate = $("#experience-fromdate").val();
+      var todate = $("#experience-todate").val();
+      
+      $.post( "/experiences", { title: title, place: place, fromdate: fromdate, todate: todate} , function(){
+        location.reload();
+      });
+
+    });
+
+
     // ------------- adding F & A -------------
 
 });

@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Resource routes
     Route::resource('skills', 'SkillsController', ['only' => ['index', 'store', 'update','destroy']]);
     Route::resource('educations', 'EducationsController', ['only' => ['index', 'store', 'update','destroy']]);
+    Route::resource('experiences', 'ExperiencesController', ['only' => ['index', 'store', 'update','destroy']]);
 
 });
 

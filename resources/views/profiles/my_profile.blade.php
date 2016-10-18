@@ -49,7 +49,7 @@
         @endif
         <div class="dynamic-form-skill">
           <label for="skill">Skill</label>
-          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn" id="post-skill">Add</a>
+          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn btn-success" id="post-skill">Add</a>
         </div>
         <button href="" id="add-skill" class="btn btn-default">Add Skill</button>
       </div>
@@ -79,14 +79,40 @@
           <label for="to_date">To</label>
           <input type="date" name="to_date" value="" id="education-todate">
 
-          <a href="#" class="btn" id="post-education">Add</a>
+          <a href="#" id="post-education" class="btn btn-success">Add</a>
         </div>
         <button id="add-education" class="btn btn-default">Add Education</button>
       </div>
       
       @if($experiences)
       <div class="col-sm-6">
-         <h3 class="caps">Experience</h3>
+        <h3 class="caps">Experience</h3>
+        @if(!empty($experiences))
+          @foreach($experiences as $exp)
+           <div class="well">
+            Title: {{ $exp['title'] }}
+            Place: {{ $exp['place'] }} <br>
+            From date: {{ $exp['from_date'] }}
+            To date: {{ $exp['to_date'] }} <br> 
+          </div>
+          @endforeach
+        @endif
+        <div class="dynamic-form-experience">
+          <label for="title">Job title</label>
+          <input type="text" name="title" value="" id="experience-title">
+
+          <label for="place">Place</label>
+          <input type="text" name="place" value="" id="experience-place">
+
+          <label for="from_date">From</label>
+          <input type="date" name="from_date" value="" id="experience-fromdate">
+
+          <label for="to_date">To</label>
+          <input type="date" name="to_date" value="" id="experience-todate">
+
+          <a href="#" id="post-experience" class="btn btn-success">Add</a>
+        </div>
+        <button id="add-experience" class="btn btn-default">Add Experience</button>
       </div>
       @endif
       @if($fas)
