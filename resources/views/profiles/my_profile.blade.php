@@ -115,13 +115,39 @@
         <button id="add-experience" class="btn btn-default">Add Experience</button>
       </div>
       @endif
-      @if($fas)
+
+      
       <div class="col-sm-6">
          <h3 class="caps">Featured-in & Awards</h3>
+          @if(!empty($fas))
+          @foreach($fas as $fa)
+           <div class="well">
+            Title: {{ $fa['title'] }}
+            Description: {{ $fa['description'] }}
+          </div>
+          @endforeach
+        @endif
+        <div class="dynamic-form-fa">
+          <label for="title">Featured-in and Awards</label>
+          <input type="text" name="title" value="" id="fa-title">
+
+          <label for="place">Place</label>
+          <input type="text" name="place" value="" id="fa-place">
+
+          <label for="from_date">From</label>
+          <input type="date" name="from_date" value="" id="fa-fromdate">
+
+          <label for="to_date">To</label>
+          <input type="date" name="to_date" value="" id="fa-todate">
+
+          <a href="#" id="post-fa" class="btn btn-success">Add</a>
+        </div>
+        <button id="add-fa" class="btn btn-default">Add FA</button>
+
       </div>
-      @endif
+      
+
     </div>
-    
     <hr class="col-xs-12">
     
     <div class="col-sm-12 voffset-10"">
