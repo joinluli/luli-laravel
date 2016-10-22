@@ -275,8 +275,16 @@ class ProfilesController extends Controller
     public function instagram_fetch($user_id){
       $instagram = new Instagram;
       $user = User::find($user_id);
-      $access_token = decrypt($user->instagram_detail->hashed_access_token);
-      $data = $instagram->get('v1/users/self/media/recent/', ['access_token' => $access_token, 'count' => 9]);
+      // check if current this specific user has instagram details in db
+      if($user->instagram_detail){
+        $access_token = decrypt($user->instagram_detail->hashed_access_token);
+        $data = $instagram->get('v1/users/self/media/recent/', ['access_token' => $access_token, 'count' => 9]);
+      }
+      else{
+        return NULL;
+      }
+
+      // if the $data variable from above has the 'data' index, proceed to return it
       if(isset($data['data'])) {
             return $data['data'];
         }
