@@ -152,7 +152,17 @@
     
     <div class="col-sm-12 voffset-10"">
       <h3 class="caps">Latest on Instagram</h3>
-
+      @if(empty($instagrams))
+        <a href="/insta_login">Instagram login</a>
+      @else
+        <div class="col-sm-12" id="lightSlider1">
+        @foreach($instagrams as $inst)
+          <div class="col-sm-4 works">
+            <img src="{{ $inst['images']['low_resolution']['url'] }}" width='400' height='300' alt="">
+          </div>
+        @endforeach
+        </div>
+      @endif
     </div>
 
     <hr class="col-xs-12">

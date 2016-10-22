@@ -4,7 +4,8 @@
     }
   });
   $(document).ready(function(){
-    $("#lightSlider").lightSlider(); 
+    $("#lightSlider").lightSlider();
+    $("#lightSlider1").lightSlider(); 
 
     // ------- adding skills ----------
     $("#add-skill").click(function(){

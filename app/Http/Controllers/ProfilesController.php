@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests;
 use Auth;
 use Validator;
+
+use App\Http\Controllers\InstagramController;
 // include all models
 use App\User;
 use App\Work;
@@ -17,6 +19,12 @@ use App\Profile;
 use App\Skill;
 use App\Group;
 use App\Fa;
+
+// Instagram functionality inclusions
+use Mbarwick83\Instagram\Instagram;
+use App\InstagramDetail;
+use Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class ProfilesController extends Controller
 {
@@ -263,6 +271,20 @@ class ProfilesController extends Controller
         //
     }
 
+    // Instragram images functionality
+    public function instagram_fetch($user_id){
+      $instagram = new Instagram;
+      $user = User::find($user_id);
+      $access_token = decrypt($user->instagram_detail->hashed_access_token);
+      $data = $instagram->get('v1/users/self/media/recent/', ['access_token' => $access_token, 'count' => 9]);
+      if(isset($data['data'])) {
+            return $data['data'];
+        }
+      else{
+        return NULL;
+      }
+    }
+
     // Custom written functions
     public function public_profile($username){
       $user = User::where('username', $username)->first();
@@ -293,6 +315,7 @@ class ProfilesController extends Controller
       $data['groups'] = $user->groups;
       $data['email'] = $user->email;
       $data['username'] = $user->username;
+      $data['instagrams'] = $this->instagram_fetch($user->id);
 
       return view('profiles.my_profile', $data);
     }

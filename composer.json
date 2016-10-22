@@ -11,7 +11,8 @@
         "barryvdh/laravel-cors": "^0.8.1",
         "predis/predis": "^1.1",
         "laravelcollective/html": "^5.2.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "mbarwick83/instagram": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
