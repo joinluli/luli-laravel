@@ -18,7 +18,15 @@
     // ------------POSTING DATA----------
     // ------- adding skills ----------
     $("#add-skill").click(function(){
-        $('.dynamic-form-skill').show("fast");
+        $('.dynamic-form-skill').toggle("fast", function(){
+          if ($('.dynamic-form-skill').is(':visible')) 
+            {$('#add-skill').html('Close form');} 
+          else 
+          {
+            $('#add-skill').html('Add Skill');
+          }
+          
+        });
     });
     // Post the skill
     $("#post-skill").click(function(){
@@ -31,7 +39,16 @@
 
     // ------------- adding education ------------
      $("#add-education").click(function(){
-        $('.dynamic-form-education').toggle("fast");
+        $('.dynamic-form-education').toggle("fast", function(){
+          if ($('.dynamic-form-education').is(':visible')) 
+            {$('#add-education').html('Close form');} 
+          else 
+          {
+            $('#add-education').html('Add Education');
+          }
+          
+        });
+        
     });
 
     $("#post-education").click(function(){
@@ -48,7 +65,15 @@
     // -------------- adding experience ----------
 
     $("#add-experience").click(function(){
-        $('.dynamic-form-experience').toggle("fast");
+        $('.dynamic-form-experience').toggle("fast", function(){
+          if ($('.dynamic-form-experience').is(':visible')) 
+            {$('#add-experience').html('Close form');} 
+          else 
+          {
+            $('#add-experience').html('Add Experience');
+          }
+          
+        });
     });
 
     $("#post-experience").click(function(){
@@ -66,7 +91,15 @@
 
     // ------------- adding F & A -------------
     $("#add-fa").click(function(){
-        $('.dynamic-form-fa').toggle("fast");
+        $('.dynamic-form-fa').toggle("fast", function(){
+          if ($('.dynamic-form-fa').is(':visible')) 
+            {$('#add-fa').html('Close form');} 
+          else 
+          {
+            $('#add-fa').html('Add Featured & Awards');
+          }
+          
+        });
     });
 
     $("#post-fa").click(function(){

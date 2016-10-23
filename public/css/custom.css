@@ -25,10 +25,10 @@ a.navbar-brand {
 	padding-left: 15px;
 	padding-right: 15px;
 }
-.card div{
+/*.card div{
 	padding-right: 0px;
 	padding-left: 0px;
-}
+}*/
 img#dp-image{
 	height: 310px;
 	width: 100%;
@@ -38,4 +38,8 @@ img#dp-image{
 }
 div.dynamic-form-skill, div.dynamic-form-education, div.dynamic-form-experience, div.dynamic-form-fa{
 	display: none;
+}
+.mid-blocks{
+	padding-left: 20px !important;
+	padding-right: 20px !important;
 }

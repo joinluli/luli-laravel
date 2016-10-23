@@ -48,13 +48,22 @@
           </ul>
         @endif
         <div class="dynamic-form-skill">
-          <label for="skill">Skill</label>
-          <input type="text" name="skill" value="" id="skill-input"> <a href="#" class="btn btn-success" id="post-skill">Add</a>
+        <hr>
+          <div class="col-sm-6 col-sm-offset-3">
+            <label for="skill">Skill</label>
+            <input type="text" name="skill" value="" id="skill-input" class="form-control"> 
+          </div>
+          
+          <div class="form-group col-sm-12 text-center voffset-10">
+            <a href="#" class="btn btn-success col-sm-6 col-sm-offset-3" id="post-skill">Add</a>
+          </div>
         </div>
-        <button href="" id="add-skill" class="btn btn-default">Add Skill</button>
+        <div class="form-group col-sm-12 text-center voffset-10">
+        <button href="" id="add-skill" class="btn btn-default btn-xs col-sm-4 col-sm-offset-4">Add Skill</button>
+        </div>
       </div>
   
-      <div class="col-sm-6">
+      <div class="col-sm-6 mid-blocks">
          <h3 class="caps">Education</h3>
          @if(!empty($training))
           @foreach($training as $tr)
@@ -70,25 +79,36 @@
           @endforeach
         @endif
         <div class="dynamic-form-education">
-          <label for="title">Course name</label>
-          <input type="text" name="title" value="" id="education-title">
+        <hr>
+          <div class="col-sm-5">
+            <label for="title">Course name</label>
+            <input type="text" name="title" value="" id="education-title" class="form-control">
+          </div>
 
-          <label for="place">Place</label>
-          <input type="text" name="place" value="" id="education-place">
+          <div class="col-sm-5 col-sm-offset-1">
+            <label for="place">Place</label>
+            <input type="text" name="place" value="" id="education-place" class="form-control">
+          </div>
 
-          <label for="from_date">From</label>
-          <input type="date" name="from_date" value="" id="education-fromdate">
+          <div class="col-sm-5">
+            <label for="from_date">From</label>
+            <input type="date" name="from_date" value="" id="education-fromdate" class="form-control">
+          </div>
 
-          <label for="to_date">To</label>
-          <input type="date" name="to_date" value="" id="education-todate">
+          <div class="col-sm-5 col-sm-offset-1">
+            <label for="to_date">To</label>
+            <input type="date" name="to_date" value="" id="education-todate" class="form-control">
+          </div>
 
-          <a href="#" id="post-education" class="btn btn-success">Add</a>
+          <div class="form-group col-sm-12 text-center voffset-10">
+            <a href="#" id="post-education" class="btn btn-success col-sm-6 col-sm-offset-3">Add</a>
+          </div>
         </div>
-        <button id="add-education" class="btn btn-default">Add Education</button>
+        <button id="add-education" class="btn btn-default btn-xs col-sm-4 col-sm-offset-4">Add Education</button>
       </div>
       
       @if($experiences)
-      <div class="col-sm-6" id="experience-section">
+      <div class="col-sm-6 mid-blocks" id="experience-section">
         <h3 class="caps">Experience</h3>
         @if(!empty($experiences))
           @foreach($experiences as $exp)
@@ -101,26 +121,36 @@
           @endforeach
         @endif
         <div class="dynamic-form-experience">
-          <label for="title">Job title</label>
-          <input type="text" name="title" value="" id="experience-title">
+        <hr>
+          <div class="col-sm-5">
+            <label for="title">Job title</label>
+            <input type="text" name="title" value="" id="experience-title" class="form-control">
+          </div>
 
-          <label for="place">Place</label>
-          <input type="text" name="place" value="" id="experience-place">
+          <div class="col-sm-5 col-sm-offset-1">
+            <label for="place">Place</label>
+            <input type="text" name="place" value="" id="experience-place" class="form-control">
+          </div>  
+          
+          <div class="col-sm-5">
+            <label for="from_date">From</label>
+            <input type="date" name="from_date" value="" id="experience-fromdate" class="form-control">
+          </div>
 
-          <label for="from_date">From</label>
-          <input type="date" name="from_date" value="" id="experience-fromdate">
-
-          <label for="to_date">To</label>
-          <input type="date" name="to_date" value="" id="experience-todate">
-
-          <a href="#" id="post-experience" class="btn btn-success">Add</a>
+          <div class="col-sm-5 col-sm-offset-1">        
+            <label for="to_date">To</label>
+            <input type="date" name="to_date" value="" id="experience-todate" class="form-control">
+          </div>
+          <div class="form-group col-sm-12 text-center voffset-10">
+            <a href="#" id="post-experience" class="btn btn-success col-sm-6 col-sm-offset-3">Add</a>
+          </div>
         </div>
-        <button id="add-experience" class="btn btn-default">Add Experience</button>
+          <button id="add-experience" class="btn btn-default btn-xs col-sm-4 col-sm-offset-4">Add Experience</button>
       </div>
       @endif
 
       
-      <div class="col-sm-6">
+      <div class="col-sm-6 mid-blocks">
          <h3 class="caps">Featured-in & Awards</h3>
           @if(!empty($fas))
           @foreach($fas as $fa)
@@ -131,21 +161,29 @@
           @endforeach
         @endif
         <div class="dynamic-form-fa">
-          <label for="title">Title</label>
+        <hr>
+          <div class="col-sm-5">
+            <label for="title">Title</label>
+            <input type="text" name="title" value="" id="fa-title" placeholder="Eg: NY Times Stylist of the year" class="form-control"> <br>
+          </div>
 
-          <input type="text" name="title" value="" id="fa-title" placeholder="Eg: NY Times Stylist of the year"> <br>
+          <div class="col-sm-5 col-sm-offset-1">
+            <label for="date">Date</label>
+            <input type="date" name="date" value="" id="fa-date" class="form-control"> <br>
+          </div>
 
-          <label for="date">Date</label>
-          <input type="date" name="date" value="" id="fa-date"> <br>
+          <div class="col-sm-5">
+          This is an Award: <input type="radio" name="achievement" value="1" class="form-control">
+          </div>
 
-          This is an Award: <input type="radio" name="achievement" value="1"> <br>
-
-          This is an Feature: <input type="radio" name="achievement" value="0">
-
-
-          <a href="#" id="post-fa" class="btn btn-success">Add</a>
+          <div class="col-sm-5 col-sm-offset-1">
+          This is an Feature: <input type="radio" name="achievement" value="0" class="form-control">
+          </div>
+          <div class="form-group col-sm-12 text-center voffset-10">
+            <a href="#" id="post-fa" class="btn btn-success col-sm-6 col-sm-offset-3">Add</a>
+          </div>
         </div>
-        <button id="add-fa" class="btn btn-default">Add FA</button>
+        <button id="add-fa" class="btn btn-default btn-xs col-sm-4 col-sm-offset-4">Add FA</button>
 
       </div>
       
