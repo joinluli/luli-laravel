@@ -28,6 +28,10 @@ Route::post('register', 'Auth\AuthController@register');
 Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
 Route::get('/callback/{provider}', 'SocialAuthController@callback');
 
+Route::get('/insta_login', 'InstagramController@insta_login');
+Route::get('/callback_instagram', 'InstagramController@callback');
+Route::get('/get_insta_images', 'InstagramController@get_insta_images');
+
 // Login protected routes
 Route::group(['middleware' => 'auth'], function(){
 

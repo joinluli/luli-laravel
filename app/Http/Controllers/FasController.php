@@ -51,9 +51,10 @@ class FasController extends Controller
         //
         $user = Auth::user();
         $title =  $request['title'];
-        $desription =  $request['description'];
+        $date =  $request['date'];
         $achievement = $request['achievement'];
-        Fa::create(['title' => $title, 'achievement' => $achievement, 'description' => $description,'user_id' => $user->id]);
+        // dd($achievement);
+        Fa::create(['title' => $title, 'achievement' => $achievement, 'date' => $date,'user_id' => $user->id]);
         return response()->json(['status' => '1']);
     }
 

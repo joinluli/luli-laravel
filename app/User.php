@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function job_favorites(){
         return $this->hasMany('App\JobFavorite');
     }
+
+    public function instagram_detail(){
+      return $this->hasOne('App\InstagramDetail');
+    }
 }

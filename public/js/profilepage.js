@@ -4,8 +4,18 @@
     }
   });
   $(document).ready(function(){
-    $("#lightSlider").lightSlider(); 
+    // inline editable setup
+    $.fn.editable.defaults.mode = 'inline';
+    $.fn.editable.defaults.ajaxOptions = {type: "PUT"}
+    // 
+    $('.editable').editable();
 
+
+    // Slideshows of images
+    $("#lightSlider").lightSlider();
+    $("#lightSlider1").lightSlider(); 
+
+    // ------------POSTING DATA----------
     // ------- adding skills ----------
     $("#add-skill").click(function(){
         $('.dynamic-form-skill').show("fast");
@@ -55,5 +65,17 @@
 
 
     // ------------- adding F & A -------------
+    $("#add-fa").click(function(){
+        $('.dynamic-form-fa').toggle("fast");
+    });
 
+    $("#post-fa").click(function(){
+      var title = $("#fa-title").val();
+      var date = $("#fa-date").val();
+      var achievement = $('input[name=achievement]:checked').val();
+      $.post( "/fas", { title: title, achievement: achievement, date: date} , function(){
+        location.reload();
+      });
+
+    });
 });

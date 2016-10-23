@@ -43,7 +43,7 @@
         @if(!empty($skills))
           <ul class="list-unstyled">
             @foreach($skills as $skill)
-              <li>{{ $skill['skill'] }}</li>
+              <li><a href="#" id="skill" class="editable" data-type="text" data-pk="{{ $skill['id'] }}" data-url="/skills/{{ $skill['id'] }}" data-title="Enter skill">{{ $skill['skill'] }}</a></li>
             @endforeach
           </ul>
         @endif
@@ -59,10 +59,13 @@
          @if(!empty($training))
           @foreach($training as $tr)
            <div class="well">
-            Title: {{ $tr['title'] }}
-            Place: {{ $tr['place'] }} <br>
-            From date: {{ $tr['from_date'] }}
-            To date: {{ $tr['to_date'] }} <br> 
+            Title: <a href="#" id="title" class="editable" data-type="text" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['title'] }}</a>
+
+            Place: <a href="#" id="place" class="editable" data-type="text" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['place'] }}</a> <br>
+
+            From date: <a href="#" id="from_date" class="editable" data-type="date" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['from_date'] }}</a>
+
+            To date: <a href="#" id="to_date" class="editable" data-type="date" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['to_date'] }}</a> <br> 
           </div>
           @endforeach
         @endif
@@ -128,17 +131,17 @@
           @endforeach
         @endif
         <div class="dynamic-form-fa">
-          <label for="title">Featured-in and Awards</label>
-          <input type="text" name="title" value="" id="fa-title">
+          <label for="title">Title</label>
 
-          <label for="place">Place</label>
-          <input type="text" name="place" value="" id="fa-place">
+          <input type="text" name="title" value="" id="fa-title" placeholder="Eg: NY Times Stylist of the year"> <br>
 
-          <label for="from_date">From</label>
-          <input type="date" name="from_date" value="" id="fa-fromdate">
+          <label for="date">Date</label>
+          <input type="date" name="date" value="" id="fa-date"> <br>
 
-          <label for="to_date">To</label>
-          <input type="date" name="to_date" value="" id="fa-todate">
+          This is an Award: <input type="radio" name="achievement" value="1"> <br>
+
+          This is an Feature: <input type="radio" name="achievement" value="0">
+
 
           <a href="#" id="post-fa" class="btn btn-success">Add</a>
         </div>
@@ -152,7 +155,17 @@
     
     <div class="col-sm-12 voffset-10"">
       <h3 class="caps">Latest on Instagram</h3>
-
+      @if(empty($instagrams))
+        <a href="/insta_login">Instagram login</a>
+      @else
+        <div class="col-sm-12" id="lightSlider1">
+        @foreach($instagrams as $inst)
+          <div class="col-sm-4 works">
+            <img src="{{ $inst['images']['low_resolution']['url'] }}" width='400' height='300' alt="">
+          </div>
+        @endforeach
+        </div>
+      @endif
     </div>
 
     <hr class="col-xs-12">

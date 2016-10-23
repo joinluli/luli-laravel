@@ -57,7 +57,7 @@ class SkillsController extends Controller
             // Check if skill exists, and add it to database if it doesn't
             $skill = Skill::firstOrCreate(['skill' => $request['skill']]);
             // Only if this skill is not associated with the user, do the association. Useful for duplicate requests.
-            if(!($user->skills->contains('skill', $skill))){
+            if(!$user->skills->contains($skill->id)){
                 $user->skills()->attach($skill);
             }
             // $user->skills->create(['skill' => $request['skill'], 'rec_count' => '1']);
@@ -96,7 +96,26 @@ class SkillsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        // Get the user
+        $user = Auth::user();
+        $old_skill = Skill::find($id);
+        // Add the selected skill to database
+        if(isset($request['value'])){
+            // Check if skill exists, and add it to database if it doesn't
+            $skill = Skill::firstOrCreate(['skill' => $request['value']]);
+            // Only if this skill is not associated with the user, do the association. Useful for duplicate requests.
+            if(!$user->skills->contains($skill->id)){
+                // detach old skill
+                $user->skills()->detach($old_skill);
+
+                // attach the updated new skill
+                $user->skills()->attach($skill);
+            }
+            // $user->skills->create(['skill' => $request['skill'], 'rec_count' => '1']);
+        }
+        return response()->json(['status' => '1']);
+
     }
 
     /**

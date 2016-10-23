@@ -158,6 +158,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Mbarwick83\Instagram\InstagramServiceProvider::class,
 
     ],
 
@@ -207,6 +208,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Instagram'    => Mbarwick83\Instagram\Facades\Instagram::class,
 
     ],
 
