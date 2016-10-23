@@ -36,6 +36,6 @@ img#dp-image{
 .works img{
 	object-fit: cover;
 }
-div.dynamic-form-skill, div.dynamic-form-education, div.dynamic-form-experience{
+div.dynamic-form-skill, div.dynamic-form-education, div.dynamic-form-experience, div.dynamic-form-fa{
 	display: none;
 }
