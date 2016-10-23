@@ -89,7 +89,20 @@ class FasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Get the current user
+        $user = Auth::user();
+        // update the value for the current key
+        $fa = Fa::findOrFail($id);
+        // the name of the key/ column also arrives from the form
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $fa->$name = $value;
+        if($fa->save()){
+            return response()->json(['status' => '1']);
+        }
+        else{
+         return response()->json(['status' => '0']);   
+        }
     }
 
     /**

@@ -88,15 +88,15 @@
       </div>
       
       @if($experiences)
-      <div class="col-sm-6">
+      <div class="col-sm-6" id="experience-section">
         <h3 class="caps">Experience</h3>
         @if(!empty($experiences))
           @foreach($experiences as $exp)
            <div class="well">
-            Title: {{ $exp['title'] }}
-            Place: {{ $exp['place'] }} <br>
-            From date: {{ $exp['from_date'] }}
-            To date: {{ $exp['to_date'] }} <br> 
+            Title: <a href="#" id="title" class="editable" data-type="text" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['title'] }}</a>
+            Place: <a href="#" id="place" class="editable" data-type="text" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['place'] }}</a> <br>
+            From date: <a href="#" id="from_date" class="editable" data-type="date" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['from_date'] }}</a>
+            To date: <a href="#" id="to_date" class="editable" data-type="date" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['to_date'] }} </a><br> 
           </div>
           @endforeach
         @endif
@@ -125,8 +125,8 @@
           @if(!empty($fas))
           @foreach($fas as $fa)
            <div class="well">
-            Title: {{ $fa['title'] }}
-            Description: {{ $fa['description'] }}
+            Title: <a href="#" id="title" class="editable" data-type="text" data-pk="{{ $fa['id'] }}" data-url="/fas/{{ $fa['id'] }}" data-title="Enter title">{{ $fa['title'] }} </a><br>
+            Date: <a href="#" id="date" class="editable" data-type="text" data-pk="{{ $fa['id'] }}" data-url="/fas/{{ $fa['id'] }}" data-title="Enter date">{{ $fa['date'] }}</a>
           </div>
           @endforeach
         @endif

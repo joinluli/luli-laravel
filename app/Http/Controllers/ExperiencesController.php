@@ -92,7 +92,20 @@ class ExperiencesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Get the current user
+        $user = Auth::user();
+        // update the value for the current key
+        $education = Experience::findOrFail($id);
+        // the name of the key/ column also arrives from the form
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $education->$name = $value;
+        if($education->save()){
+            return response()->json(['status' => '1']);
+        }
+        else{
+         return response()->json(['status' => '0']);   
+        }
     }
 
     /**
