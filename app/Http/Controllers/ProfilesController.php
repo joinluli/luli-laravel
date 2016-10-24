@@ -294,6 +294,21 @@ class ProfilesController extends Controller
     }
 
     // Custom written functions
+    // public function public_profile($username){
+    //   $user = User::where('username', $username)->first();
+    //   $data['profile'] = $user->profile;
+    //   $data['location'] = $user->profile->location;
+    //   $data['fas'] = $user->fas;
+    //   $data['works'] = $user->works;
+    //   $data['experiences'] = $user->experiences->where('exp_type_id', 1);
+    //   $data['freelance'] = $user->experiences->where('exp_type_id', 2);
+    //   $data['training'] = $user->experiences->where('exp_type_id', 3);
+    //   $data['skills'] = $user->skills;
+    //   $data['groups'] = $user->groups;
+
+    //   return view('profiles.profile', $data);
+    // }
+
     public function public_profile($username){
       $user = User::where('username', $username)->first();
       $data['profile'] = $user->profile;
@@ -301,14 +316,16 @@ class ProfilesController extends Controller
       $data['fas'] = $user->fas;
       $data['works'] = $user->works;
       $data['experiences'] = $user->experiences->where('exp_type_id', 1);
-      $data['freelance'] = $user->experiences->where('exp_type_id', 2);
-      $data['training'] = $user->experiences->where('exp_type_id', 3);
+      // $data['freelance'] = $user->experiences->where('exp_type_id', 2);
+      $data['training'] = $user->experiences->where('exp_type_id', 2);
       $data['skills'] = $user->skills;
       $data['groups'] = $user->groups;
+      $data['email'] = $user->email;
+      $data['username'] = $user->username;
+      $data['instagrams'] = $this->instagram_fetch($user->id);
 
       return view('profiles.profile', $data);
     }
-
     // A logged in users profile
     public function my_profile(){
       $user = Auth::user();
