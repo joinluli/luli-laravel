@@ -15,8 +15,8 @@
     @yield('styles')
 
     <link rel="stylesheet" href="{{ URL::asset('/css/custom.css') }}">
-    <link rel="stylesheet" href="{{ URL::asset('/css/lightslider.min.css') }}">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="/css/lightslider.min.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script   src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="   crossorigin="anonymous"></script>
     <style>
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top navigation">
         <div class="container">
             <div class="navbar-header">
 
@@ -44,11 +44,11 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="images/luli_logo.png" class="img-responsive" alt="">
+                    <img src="images/luli_logo.png" class="img-responsive heading_icon" alt="">
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse navbar-right" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Home</a></li>

@@ -1,0 +1,719 @@
+/*		Fonts		*/
+
+@font-face {
+    font-family: 'TeX Gyre Adventor';
+    font-weight: lighter;
+    ;
+    font-style: normal;
+    src: url('../fonts/texgyreadventor-regular.otf');
+}
+@font-face {
+    font-family: 'TeX Gyre Adventor Bold';
+    font-weight: normal;
+    font-style: normal;
+    src: url('../fonts/texgyreadventor-bold.otf');
+}
+body {
+    font-family: 'TeX Gyre Adventor';
+    font-size: 12pt;
+    font-weight: lighter;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+b {
+    font-family: 'TeX Gyre Adventor Bold';
+}
+
+a.hover {
+    color: grey;
+}
+
+/* ######## Preloader ####################*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 999999;
+}
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-image: url('../img/loader.gif');
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  margin: -40px 0 0 -100px;
+}
+#status img {
+  text-align: center;
+  margin-top: -80px;
+}
+
+/*############ Scrolling Arrow ############################################# */
+.down_arrow {
+  position: fixed;
+  bottom: 0;
+  left: 47.5%;
+  width: 8vh;
+  height: 8vh;
+  background-image:url('../img/arrow-down-white.png');
+  background-size: contain;
+}
+
+.bounce {
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+/* Scroll down indicator (bouncing) */
+@-webkit-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0); }
+  40% {
+    -webkit-transform: translateY(-30px); }
+  60% {
+    -webkit-transform: translateY(-15px); } }
+@-moz-keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -moz-transform: translateY(0); }
+  40% {
+    -moz-transform: translateY(-30px); }
+  60% {
+    -moz-transform: translateY(-15px); } }
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0); }
+  40% {
+    -webkit-transform: translateY(-30px);
+    -moz-transform: translateY(-30px);
+    -ms-transform: translateY(-30px);
+    -o-transform: translateY(-30px);
+    transform: translateY(-30px); }
+  60% {
+    -webkit-transform: translateY(-15px);
+    -moz-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    -o-transform: translateY(-15px);
+    transform: translateY(-15px); } }
+
+  .bounce-up{
+    opacity: 1;
+
+    -moz-transform: translate3d(0px, 0px, 0px);
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+/*  ############ Animation #############################
+    Solution from http://www.justinaguilar.com/animations/
+*/
+
+  /*TODO add other browser support such as ie, moz, opera*/
+
+  /*
+  ==============================================
+  slideUp
+  ==============================================
+  */
+  .slideUp{
+  	animation-name: slideUp;
+  	-webkit-animation-name: slideUp;
+
+  	animation-duration: 1s;
+  	-webkit-animation-duration: 1s;
+
+  	animation-timing-function: ease;
+  	-webkit-animation-timing-function: ease;
+
+  	visibility: visible !important;
+  }
+
+  @keyframes slideUp {
+  	0% {
+  		transform: translateY(100%);
+  	}
+  	100% {
+  		transform: translateY(0%);
+  	}
+  }
+
+  @-webkit-keyframes slideUp {
+  	0% {
+  		-webkit-transform: translateY(100%);
+  	}
+  	100% {
+  		-webkit-transform: translateY(0%);
+  	}
+  }
+
+  /*
+  ==============================================
+  slideLeft
+  ==============================================
+  */
+
+  .slideLeft{
+  	animation-name: slideLeft;
+  	-webkit-animation-name: slideLeft;
+
+  	animation-duration: 1s;
+  	-webkit-animation-duration: 1s;
+
+  	animation-timing-function: ease-in-out;
+  	-webkit-animation-timing-function: ease-in-out;
+
+  	visibility: visible !important;
+  }
+
+  @keyframes slideLeft {
+  	0% {
+  		transform: translateX(100%);
+  	}
+  	100% {
+  		transform: translateX(0%);
+  	}
+  }
+
+  @-webkit-keyframes slideLeft {
+  	0% {
+  		-webkit-transform: translateX(100%);
+  	}
+  	100% {
+  		-webkit-transform: translateX(0%);
+  	}
+  }
+
+  /*
+  ==============================================
+  slideRight
+  ==============================================
+  */
+  .slideRight{
+  	animation-name: slideRight;
+  	-webkit-animation-name: slideRight;
+
+  	animation-duration: 1s;
+  	-webkit-animation-duration: 1s;
+
+  	animation-timing-function: ease-in-out;
+  	-webkit-animation-timing-function: ease-in-out;
+
+  	visibility: visible !important;
+  }
+
+  @keyframes slideRight {
+  	0% {
+  		transform: translateX(-100%);
+  	}
+  	100% {
+  		transform: translateX(0%);
+  	}
+  }
+
+  @-webkit-keyframes slideRight {
+  	0% {
+  		-webkit-transform: translateX(-100%);
+  	}
+  	100% {
+  		-webkit-transform: translateX(0%);
+  	}
+  }
+
+  /*
+==============================================
+expandOpen
+==============================================
+*/
+
+.expandOpen{
+	animation-name: expandOpen;
+	-webkit-animation-name: expandOpen;
+
+	animation-duration: 1.2s;
+	-webkit-animation-duration: 1.2s;
+
+	animation-timing-function: ease-out;
+	-webkit-animation-timing-function: ease-out;
+
+	visibility: visible !important;
+}
+
+@keyframes expandOpen {
+	0% {
+		transform: scale(1.2);
+	}
+	50% {
+		transform: scale(0.95);
+	}
+	80% {
+		transform: scale(1.05);
+	}
+	90% {
+		transform: scale(0.98);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@-webkit-keyframes expandOpen {
+	0% {
+		-webkit-transform: scale(1.8);
+	}
+	50% {
+		-webkit-transform: scale(0.95);
+	}
+	80% {
+		-webkit-transform: scale(1.05);
+	}
+	90% {
+		-webkit-transform: scale(0.98);
+	}
+	100% {
+		-webkit-transform: scale(1);
+	}
+}
+
+  #first,#mock_one, #mock_three, #last {
+    visibility: hidden;
+  }
+
+/*######################## Foundation Override ######################## */
+button, .button {
+    background-color: #A55474;
+    margin: 0 0 0;
+    padding-bottom: 1rem;
+    font-family: 'TeX Gyre Adventor';
+
+    border-radius: 10px;
+}
+p {
+    margin-bottom: 0px;
+}
+h2, h3, h4, h5, h6, u {
+    font-family: 'TeX Gyre Adventor';
+}
+input[type="text"], input[type="email"] {
+    height: 5vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+
+    border-radius: 10px;
+}
+
+/*############### 1st page ######################## */
+.welcome {
+    background-image: url('../img/geo_bg.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+    height: 100vh;
+
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+img.heading_icon {
+    text-align: left;
+    padding-top: 2vh;
+    height: 8vh;
+    float: left;
+}
+.heading {
+    float: right;
+    margin-top: 3vh;
+}
+.heading>.links{
+  font-size: .8rem;
+}
+.headline {
+    text-align: right;
+    /*font-weight: lighter;*/
+    /*margin:0 0 10px;*/
+    font-family: 'TeX Gyre Adventor';
+    color: #f6f6f6;
+    font-size: 2.3rem;
+    padding-top: 14vh;
+}
+h4.headline {
+    padding-top: 0px;
+}
+h5.sign_up {
+    padding-top: 9vh;
+    color: #f6f6f6;
+    font-size: 1.456rem;
+}
+
+.sign_up>div {
+    height: 7vh;
+}
+.sign_up.columns {
+    padding-left: 0;
+    padding-right: 0;
+}
+.button.sign_up {
+    font-size: 1rem;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+
+    border-radius: 10px;
+}
+.button.sign_up:hover {
+    background-color: grey;
+}
+
+div.influencer {
+   margin-top: 4vh;
+}
+
+.button.influencer {
+    font-size: 1.16rem;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+}
+.button.influencer:hover {
+    background-color: grey;
+}
+
+h6.note {
+    padding-top: 3vh;
+    color: #f6f6f6;
+    font-size: 1.16rem;
+    margin-bottom: 2vh;
+}
+.button.note {
+    background-color: transparent;
+    padding-top: 0;
+    margin-bottom: 1vh;
+}
+
+/*TODO change the shape of the box*/
+
+.f-dropdown.content {
+    max-width: 25rem;
+    background: #A55474;
+}
+p.dropdown {
+    color: #f6f6f6;
+    font-size: 90%;
+}
+
+img.create_profile {
+  width:50%;
+  margin-top: 13vh;
+}
+
+img.create_profile:hover {
+  opacity: 0.5;
+}
+
+/*############## 2nd page ######################## */
+
+div.mock_ups {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-image: url('../img/water_color.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+.mock_ups>.large-block-grid-3 {
+    padding: 15vh 0rem 3.5rem;
+    text-align: center;
+}
+img.mock_up {
+    height: 60vh;
+    padding-bottom: 2vh;
+}
+li.mock_up {
+    padding-bottom: 1rem;
+
+}
+
+/*############## last page ######################## */
+
+div.last_page {
+    height: 100vh;
+}
+
+.slick-slide img {
+  height:20vh;
+  margin-left:14%;
+  padding: 2%;
+}
+
+.carousel-slider img {
+  /*opacity: 0.8;*/
+  /*filter:brightness(50%);
+  transition: all 300ms ease;*/
+}
+
+.carousel-slider .slick-center img {
+  /*opacity: 1;*/
+  /*filter:brightness(100%);
+  transform: scale(1.08);*/
+}
+
+div.in {
+    background-image: url('../img/face-left.png'), url('../img/face-right.png');
+    background-size: 25% 100%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, right top;
+    height: 89vh;
+
+    text-align: center;
+}
+div.whos_in {
+    padding-top: 7vh;
+}
+img.whos_in {
+    margin-top: 2vh;
+    width: 25%;
+    /*height: 20vh;*/
+    margin-bottom: 5vh;
+}
+div.featured_in {
+    padding-top: 2vh;
+}
+img.featured_in {
+    margin-top: 1.5vh;
+    width: 16vh;
+    height: 16vh;
+}
+.back_top {
+    text-align: center;
+    margin-top:6vh;
+    margin-bottom: 2vh;
+}
+.button.back_top {
+    background-color: black;
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+    padding-bottom: .5rem;
+    padding-top: .5rem;
+    padding-left: .7rem;
+    padding-right: .7rem;
+}
+.button.back_top:hover {
+    background-color: grey;
+}
+
+/*############ Footer ######################## */
+
+div.footer {
+    background: #A55474;
+    color: #f6f6f6;
+    position: relative;
+    /*height: 11vh;*/
+    padding-bottom: .5vh;
+}
+p.copyrights {
+    font-size: .7rem;
+    text-align: left;
+    margin-top: 8vh;
+}
+
+.social_media .small-block-grid-4>li {
+  width:inherit;
+  /*text-align: right;*/
+}
+ul.social_media>li {
+    padding: .3rem 0.25rem 0;
+    margin: 0 0;
+    text-align: right;
+}
+img.social_media {
+    width: 1.4rem;
+}
+div.social_media {
+    margin-top: 5vh;
+    margin-left: 70%;
+    display: inline-block;
+    text-align: right;
+    width: inherit;
+}
+.contact {
+    margin-top: .8vh;
+    text-align: right;
+}
+/*.footer_right {
+  text-align: right;
+}*/
+.links {
+    font-size: .8rem;
+    margin-left: 5vw;
+}
+.links:hover {
+    color: black;
+}
+.links>a:hover {
+    color: black;
+}
+a {
+    color: #f6f6f6;
+}
+
+/*    Responsive CSS    */
+
+/*When browser window is narrower than 1024 px*/
+@media only screen and (max-width: 800px) {
+  .welcome {
+      background-image: url('../img/geo_m.jpg');
+  }
+
+  .headline {
+    font-size: 2rem;
+    padding-top: 8vh;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="email"] {
+    margin-top: 2vh;
+  }
+
+  h5.sign_up {
+    font-size: 1.2rem;
+  }
+
+  h6.note {
+    font-size: 1rem;
+    padding-top: 1vh;
+    margin-bottom: 0;
+  }
+
+  .button.sign_up {
+    margin-top: 2vh;
+  }
+
+  .button.note {
+      display:none;
+  }
+
+  div.mock_ups {
+    height: auto;
+  }
+
+  div.last_page {
+      height: auto;
+  }
+
+  div.in {
+      height: auto;
+      background-image: none;
+  }
+
+  p.copyrights {
+      margin-top: 0;
+      text-align: center;
+  }
+
+  .contact {
+    text-align: center;
+  }
+
+  .down_arrow {
+    left: 45%;
+  }
+
+  .columns {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .button.influencer {
+    margin-top: 1.5vh;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .welcome {
+      background-image: url('../img/geo_s.jpg');
+  }
+
+  .headline {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="email"] {
+    margin-top: 0;
+  }
+
+  .button.sign_up {
+    margin-top: 0;
+  }
+
+  h5.sign_up {
+    font-size: 1rem;
+    padding-top: 4vh;
+  }
+
+  h6.note {
+    font-size: .78rem;
+  }
+
+  /*.note {
+      display:none;
+  }*/
+}
+
+@media only screen and (max-width: 350px) {
+  h6.note {
+    font-size: .65rem;
+  }
+
+  .headline {
+    font-size: 1.5rem;
+  }
+
+  h5.sign_up {
+    font-size: 1rem;
+    padding-top: 3vh;
+  }
+
+  .button.sign_up {
+    font-size: .8rem;
+  }
+
+  .button.influencer {
+    font-size: .8rem;
+  }
+
+}
+
+
+/*############ Investor Page ############## */
+
+h3.coming {
+    font-family: 'TeX Gyre Adventor';
+    color: #f6f6f6;
+    font-size: 2.6rem;
+    padding-top: 30vh;
+}
+div.back_top.coming {
+    padding-top: 10vh;
+}
+.button.back_top.coming {
+    background-color: #A55474;
+}

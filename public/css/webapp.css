@@ -1,0 +1,171 @@
+/*############ Web App #############*/
+.navigation {
+  background-color: #B86B80;
+  padding-bottom: 2vh;
+
+  height:9vh;
+}
+
+img.heading_icon {
+    text-align: left;
+    padding-top: 1.5vh;
+    height: 8vh;
+    float: left;
+}
+
+.main {
+    background-color: #f6f6f6;
+    text-align: center;
+    height: 91vh;
+
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2vh;
+}
+
+.container {
+    background-color: white;
+    text-align: center;
+
+    height: 87vh;
+}
+
+.content {
+    padding-top: 2vh;
+}
+
+/*#################### Tabs setting ################*/
+
+/*         Foundation Override          */
+.tabs-content>.content {
+  padding: 0;
+}
+
+.tabs .tab-title.active a{
+  font-family: 'TeX Gyre Adventor Bold';
+  font-size: 1.5rem;
+  color:#3C3C3C;
+}
+
+.tabs .tab-title>a {
+  font-family: 'TeX Gyre Adventor Bold';
+  font-size: 1.5rem;
+  color: #919191;
+  margin-left: 4vw;
+}
+
+.instruction {
+  font-family: 'TeX Gyre Adventor Bold';
+  /*font-weight: lighter;*/
+  font-style: italic;
+  color:#868686;
+  font-size: 1.5rem;
+  text-align: left;
+  padding-left: 5%;
+  margin-bottom: 4vh;
+}
+
+.display {
+  font-size: 1rem;
+  color:#626262;
+  text-align: left;
+}
+
+.button {
+  background-color: #868686;
+}
+
+.button.sign_up {
+  width: 20vw;
+}
+
+/*                   Or division bar                      */
+.division {
+  position: relative;
+  margin-top: 2vh;
+  /*margin-bottom: 4vh;*/
+}
+
+.bar-left {
+  width:30%;
+  height:10px;
+  border-bottom: 1px solid #868686;
+  position: absolute;
+  text-align: left;
+  margin-left: 13%;
+  margin-top: 3%;
+}
+
+.bar-right {
+  width:30%;
+  height:10px;
+  border-bottom: 1px solid #868686;
+  position: absolute;
+  text-align: right;
+  margin-left: 57%;
+  margin-top: 3%;
+}
+
+img.or {
+  height: 6vh;
+  text-align: center;
+  /*margin-top: 1vh;*/
+  position: absolute;
+  margin-left: -5%;
+}
+
+.button.sign_up.facebook {
+  margin-top: 3vh;
+  background-color: #3b5998;
+  font-size: .8rem;
+  margin-bottom: 1vh;
+}
+
+.button.sign_up.google {
+  margin-top: 2vh;
+  background-color: #db3236;
+  font-size: .8rem;
+}
+
+/*      Input information       */
+
+.button.next {
+  margin-top: 4vh;
+  margin-bottom: 3vh;
+  width: 20vw;
+
+  font-size: 1rem;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+
+  border-radius: 10px;
+  background-color: #7C7C7C;
+}
+
+button:hover {
+
+}
+
+a.skip {
+  /*margin-top: 8vh;*/
+  color: #7C7C7C;
+  margin-right: 15%;
+  font-size: 1rem;
+}
+
+.progress {
+  margin-left: 38%;
+  margin-top: 4vh;
+  height: 5vh;
+  float: left;
+  background-color: transparent;
+}
+
+img.upload {
+  height: 20vh;
+  text-align: center;
+  margin-top: 6vh;
+  margin-bottom: 7vh;
+}

@@ -56,8 +56,8 @@
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
                                 <br> <br>
-                                <a href="redirect/facebook" class="btn btn-primary">Facebook Login</a> 
-                                <a href="redirect/google" class="btn btn-danger">Google login</a>
+                                <a href="redirect/facebook" class="btn btn-primary" target="_top">Facebook Login</a> 
+                                <a href="redirect/google" class="btn btn-danger" target="_top">Google login</a>
                             </div>
                         </div>
                     </form>
