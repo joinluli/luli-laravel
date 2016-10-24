@@ -117,5 +117,12 @@ class ExperiencesController extends Controller
     public function destroy($id)
     {
         //
+        $exp = Experience::find($id);
+        if($exp->delete()){
+            return response()->json(['status' => '1']);
+        }
+        else {
+            return response()->json(['status' => '0']);
+        }
     }
 }

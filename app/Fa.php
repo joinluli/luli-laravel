@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fa extends Model
 {
     // fillable fields for mass assignment
-    protected $fillable = ['title','description','achievement','user_id', 'image_permalink'];
+    protected $fillable = ['title','description','achievement','user_id', 'image_permalink', 'date'];
 
     // Relationships
     public function users(){

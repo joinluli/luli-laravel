@@ -127,5 +127,14 @@ class SkillsController extends Controller
     public function destroy($id)
     {
         //
+          // Get the user
+        $user = Auth::user();
+        $skill = Skill::find($id);
+        if($user->skills()->detach($skill)){
+            return response()->json(['status' => '1']);
+        }
+        else{
+            return response()->json(['status' => '0']);
+        }
     }
 }

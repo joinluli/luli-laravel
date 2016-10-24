@@ -317,7 +317,7 @@ class ProfilesController extends Controller
       $data['fas'] = $user->fas;
       $data['works'] = $user->works;
       $data['experiences'] = $user->experiences->where('exp_type_id', 1);
-      $data['freelance'] = $user->experiences->where('exp_type_id', 2);
+      // $data['freelance'] = $user->experiences->where('exp_type_id', 2);
       $data['training'] = $user->experiences->where('exp_type_id', 2);
       $data['skills'] = $user->skills;
       $data['groups'] = $user->groups;

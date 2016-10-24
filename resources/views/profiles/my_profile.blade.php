@@ -41,9 +41,13 @@
       <div class="col-sm-6">
         <h3 class="caps">Skills</h3>
         @if(!empty($skills))
-          <ul class="list-unstyled">
+          <ul class="list-group">
             @foreach($skills as $skill)
-              <li><a href="#" id="skill" class="editable" data-type="text" data-pk="{{ $skill['id'] }}" data-url="/skills/{{ $skill['id'] }}" data-title="Enter skill">{{ $skill['skill'] }}</a></li>
+              <li class="list-item voffset-10">
+              <ul class="list-inline">
+                <li><a href="#" id="skill" class="editable" data-type="text" data-pk="{{ $skill['id'] }}" data-url="/skills/{{ $skill['id'] }}" data-title="Enter skill">{{ $skill['skill'] }}</a> </li>
+                <li><a href="/skills/{{ $skill['id'] }}" class="btn btn-danger btn-xs delete-btn">Delete</a></li></li>
+              </ul>
             @endforeach
           </ul>
         @endif
@@ -75,6 +79,7 @@
             From date: <a href="#" id="from_date" class="editable" data-type="date" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['from_date'] }}</a>
 
             To date: <a href="#" id="to_date" class="editable" data-type="date" data-pk="{{ $tr['id'] }}" data-url="/educations/{{ $tr['id'] }}" data-title="Enter username">{{ $tr['to_date'] }}</a> <br> 
+            <a href="/experiences/{{ $tr['id'] }}" class="btn btn-danger btn-xs delete-btn voffset-10">Delete</a>
           </div>
           @endforeach
         @endif
@@ -117,7 +122,10 @@
             Place: <a href="#" id="place" class="editable" data-type="text" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['place'] }}</a> <br>
             From date: <a href="#" id="from_date" class="editable" data-type="date" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['from_date'] }}</a>
             To date: <a href="#" id="to_date" class="editable" data-type="date" data-pk="{{ $exp['id'] }}" data-url="/experiences/{{ $exp['id'] }}" data-title="Enter username">{{ $exp['to_date'] }} </a><br> 
+          
+            <a href="/experiences/{{ $exp['id'] }}" class="btn btn-danger btn-xs delete-btn voffset-10">Delete</a>
           </div>
+          
           @endforeach
         @endif
         <div class="dynamic-form-experience">
@@ -156,7 +164,9 @@
           @foreach($fas as $fa)
            <div class="well">
             Title: <a href="#" id="title" class="editable" data-type="text" data-pk="{{ $fa['id'] }}" data-url="/fas/{{ $fa['id'] }}" data-title="Enter title">{{ $fa['title'] }} </a><br>
-            Date: <a href="#" id="date" class="editable" data-type="text" data-pk="{{ $fa['id'] }}" data-url="/fas/{{ $fa['id'] }}" data-title="Enter date">{{ $fa['date'] }}</a>
+            Date: <a href="#" id="date" class="editable" data-type="text" data-pk="{{ $fa['id'] }}" data-url="/fas/{{ $fa['id'] }}" data-title="Enter date">{{ $fa['date'] }}</a> <br>
+
+            <a href="/fas/{{ $fa['id'] }}" class="btn btn-danger btn-xs delete-btn voffset-10">Delete</a>
           </div>
           @endforeach
         @endif

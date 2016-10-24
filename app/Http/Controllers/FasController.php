@@ -114,5 +114,12 @@ class FasController extends Controller
     public function destroy($id)
     {
         //
+        $fa = Fa::find($id);
+        if($fa->delete()){
+            return response()->json(['status' => '1']);
+        }
+        else {
+            return response()->json(['status' => '0']);
+        }
     }
 }

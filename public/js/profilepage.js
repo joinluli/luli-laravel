@@ -111,4 +111,24 @@
       });
 
     });
+
+    // --------- Delete requests ---------
+
+    $('a.delete-btn').click(function(){
+      event.preventDefault();
+      var url = $(this).attr('href');
+      var yesDelete = confirm("Are you sure you want to delete this?");
+      if(yesDelete)
+       { $.ajax({
+                     url: url,
+                     type: 'DELETE',
+                     success: function(result) {
+                       location.reload();
+                     }
+               });
+        }
+
+    });
+
+    // 
 });
