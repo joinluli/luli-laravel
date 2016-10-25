@@ -49,7 +49,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('create_profile_4', 'ProfilesController@store_4');
     Route::post('create_profile_5', 'ProfilesController@store_5');
     Route::post('create_social', 'ProfilesController@store_social');
-
+    
+    // 
+    Route::put('/profiles/{profiles}', 'ProfilesController@ajax_update');
+    Route::post('/profiles_location/{location}', 'ProfilesController@location_update');
     // Route for my profile
     Route::get('my_profile', 'ProfilesController@my_profile');
 

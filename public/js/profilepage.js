@@ -10,7 +10,6 @@
     // 
     $('.editable').editable();
 
-
     // Slideshows of images
     $("#lightSlider").lightSlider();
     $("#lightSlider1").lightSlider(); 

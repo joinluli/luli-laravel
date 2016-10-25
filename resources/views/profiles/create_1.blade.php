@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('styles')
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+@endsection
 @section('content')
 	<div class="container card">
 		
@@ -19,7 +22,7 @@
 			{!! Form::text('speciality', '', ['class' => 'form-control', 'required' => 'true']) !!}
 		</div>
 		
-		<div class="form-group col-sm-12">
+		<div class="form-group col-sm-12 ui-widget">
 			{!! Form::label('city','City', ['class' => 'display']) !!}
 			{!! Form::text('city', '', ['class' => 'form-control', 'id' => 'autocomplete']) !!}
 		</div>

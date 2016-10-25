@@ -11,9 +11,19 @@
         <img src="{{ url($profile['dp_permalink']) }}" alt="" width="300" id="dp-image" />
       </div>
       <div class="col-sm-8 col-sm-offset-1">
-        <h3 class="caps">{{ $profile['first_name'] }} {{  $profile['last_name'] }} </h3> <br>
-        <p class="capitalize">{{ $profile['tagline_1'] }} . {{ $profile['tagline_2'] }}</p>
-        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ $location['location_short'] }}</p>
+        <h3 class="caps"><a href="#" id="first_name" class="editable" data-type="text" data-pk="{{ $profile['id'] }}" data-url="/profiles/{{ $profile['id'] }}" data-title="Enter first name">{{ $profile['first_name'] }}</a> <a href="#" id="last_name" class="editable" data-type="text" data-pk="{{ $profile['id'] }}" data-url="/profiles/{{ $profile['id'] }}" data-title="Enter skill"> {{  $profile['last_name'] }} </a> </h3> <br>
+
+        <p class="capitalize">
+        <a href="#" id="tagline_1" class="editable" data-type="text" data-pk="{{ $profile['id'] }}" data-url="/profiles/{{ $profile['id'] }}" data-title="Enter first name">{{ $profile['tagline_1'] }}</a>. 
+          
+        <a href="#" id="tagline_2" class="editable" data-type="text" data-pk="{{ $profile['id'] }}" data-url="/profiles/{{ $profile['id'] }}" data-title="Enter First Tagline">{{ $profile['tagline_2'] }}</a>
+
+        </p>
+        <p><i class="fa fa-map-marker" aria-hidden="true"></i> 
+        <div id="ok">
+        <a href="#" id="location" class="editable" data-type="typeaheadjs" data-pk="{{ $profile['id'] }}" data-url="/profiles_location/{{ $profile['id'] }}" data-title="Enter Second Tagline">{{ $location['location_short'] }}</a>
+        </div>
+        </p>
         <br><br>
         <p>{{ $profile['about'] }}</p>
       </div>
@@ -229,5 +239,16 @@
 @endsection
 
 @section('scripts')
-<script src="js/profilepage.js"></script>
+  <script src="js/profilepage.js"></script>
+  <script>
+    $('#location').editable({
+      mode: 'inline',
+    pk: 1,
+    title: 'Enter a city',
+    type: 'PUT',
+    typeahead: {
+        local: {!! $city !!}
+    }
+      });
+  </script>
 @endsection

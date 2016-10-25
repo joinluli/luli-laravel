@@ -38,6 +38,7 @@ class ProfilesController extends Controller
         //
     }
 
+    // ============ Profile creation pages =============
     /**
      * Show the form for creating a new resource.
      *
@@ -162,7 +163,7 @@ class ProfilesController extends Controller
           $counter = 0;
           // lets check if the uploaded file format is actually an image or pdf, if not, just return back
           foreach ($images as $image) {
-              $rules = array('file' => 'required|mimes:png,gif,jpeg,pdf'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+              $rules = array('file' => 'required|mimes:png,gif,jpeg,pdf|max:10000'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
               $validator = Validator::make(array('file'=> $image), $rules);
               if($validator->fails()){
                 return back()->withErrors($validator);
@@ -283,7 +284,6 @@ class ProfilesController extends Controller
       else{
         return NULL;
       }
-
       // if the $data variable from above has the 'data' index, proceed to return it
       if(isset($data['data'])) {
             return $data['data'];
@@ -293,22 +293,43 @@ class ProfilesController extends Controller
       }
     }
 
-    // Custom written functions
-    // public function public_profile($username){
-    //   $user = User::where('username', $username)->first();
-    //   $data['profile'] = $user->profile;
-    //   $data['location'] = $user->profile->location;
-    //   $data['fas'] = $user->fas;
-    //   $data['works'] = $user->works;
-    //   $data['experiences'] = $user->experiences->where('exp_type_id', 1);
-    //   $data['freelance'] = $user->experiences->where('exp_type_id', 2);
-    //   $data['training'] = $user->experiences->where('exp_type_id', 3);
-    //   $data['skills'] = $user->skills;
-    //   $data['groups'] = $user->groups;
+    // ajax Update
+    public function ajax_update(Request $request, $id){
+      // Get the current user
+        $user = Auth::user();
+        // update the value for the current key
+        $profile = Profile::findOrFail($id);
+        // the name of the key/ column also arrives from the form
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $profile->$name = $value;
+        if($profile->save()){
+            return response()->json(['status' => '1']);
+        }
+        else{
+         return response()->json(['status' => '0']);   
+        }
+    }
 
-    //   return view('profiles.profile', $data);
-    // }
+    // ajax Update
+    public function location_update(Request $request, $id){
+      // Get the current user
+        $user = Auth::user();
+        // update the value for the current key
+        $profile = Profile::findOrFail($id);
+        $value = $request->get('value');
+        $location_id = Location::where('location_long', $value)->first()->id;
+        // the name of the key/ column also arrives from the form
+        $profile->location_id = $location_id;
+        if($profile->save()){
+            return response()->json(['status' => '1']);
+        }
+        else{
+         return response()->json(['status' => '0']);   
+        }
+    }
 
+    // function to to display the public profile page ( no editing functionality )
     public function public_profile($username){
       $user = User::where('username', $username)->first();
       $data['profile'] = $user->profile;
@@ -331,6 +352,8 @@ class ProfilesController extends Controller
       $user = Auth::user();
       $data['profile'] = $user->profile;
       $data['location'] = $user->profile->location;
+      $cities = Location::all()->pluck('location_long');
+      $data['city'] = json_encode($cities);
       $data['fas'] = $user->fas;
       $data['works'] = $user->works;
       $data['experiences'] = $user->experiences->where('exp_type_id', 1);
